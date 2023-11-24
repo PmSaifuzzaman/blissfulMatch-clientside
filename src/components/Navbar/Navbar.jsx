@@ -7,7 +7,7 @@ import {
 } from "@material-tailwind/react";
 import React from "react";
 
-import logo from "../../assets/images/logo/logo-without-bg.png"
+import logo from "../../assets/images/logo/logo-1.gif"
 import { NavLink } from "react-router-dom";
 
 
@@ -28,7 +28,7 @@ const Navigationbar = () => {
             <Typography
                 as="li"
                 variant="small"
-                color="blue-gray"
+                color="white"
                 className="p-1 font-normal"
             >
                 <NavLink to="/"
@@ -41,7 +41,7 @@ const Navigationbar = () => {
             <Typography
                 as="li"
                 variant="small"
-                color="blue-gray"
+                color="white"
                 className="p-1 font-normal"
             >
                 <NavLink to="/biodatas"
@@ -54,7 +54,7 @@ const Navigationbar = () => {
             <Typography
                 as="li"
                 variant="small"
-                color="blue-gray"
+                color="white"
                 className="p-1 font-normal"
             >
                 <NavLink to="/aboutUs"
@@ -67,7 +67,7 @@ const Navigationbar = () => {
             <Typography
                 as="li"
                 variant="small"
-                color="blue-gray"
+                color="white"
                 className="p-1 font-normal"
             >
                 <NavLink to="/contactUs"
@@ -82,7 +82,7 @@ const Navigationbar = () => {
 
     return (
         <div className=" ">
-            <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8">
+            <Navbar className="sticky lg:fixed top-0 z-10 backdrop-blur-none shadow-none  max-w-7xl mx-auto bg-transparent border-none rounded-none px-4 py-2 lg:px-8">
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Typography
                         as="a"
@@ -97,7 +97,7 @@ const Navigationbar = () => {
                             <Button
                                 variant="text"
                                 size="sm"
-                                className="hidden lg:inline-block"
+                                className="hidden lg:inline-block text-white"
                             >
                                 <span>Log In</span>
                             </Button>
