@@ -1,4 +1,5 @@
 import Navbar from "../../components/Navbar/Navbar";
+import WorkWay from "../../components/WorkWay/WorkWay";
 import Banner from "../Banner/Banner";
 
 
@@ -7,7 +8,8 @@ const Home = () => {
         <div>
             <Navbar></Navbar>
             <Banner></Banner>
-            <h2>This is home</h2>
+            <WorkWay></WorkWay>
+            
         </div>
     );
 };
