@@ -82,7 +82,7 @@ const Navigationbar = () => {
 
     return (
         <div className=" ">
-            <Navbar className="sticky lg:fixed top-0 z-10 backdrop-blur-none shadow-none  max-w-7xl mx-auto bg-transparent border-none rounded-none px-4 py-2 lg:px-8">
+            <Navbar className="sticky md:fixed top-0 z-10 backdrop-blur-none shadow-none  max-w-7xl mx-auto bg-transparent border-none rounded-none px-4 py-2 lg:px-8">
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Typography
                         as="a"

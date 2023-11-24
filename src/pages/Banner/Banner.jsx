@@ -5,7 +5,7 @@ import img3 from "../../assets/images/banner/banner-3.jpg"
 
 const Banner = () => {
     return (
-        <Carousel className="">
+        <Carousel className="h-screen w-full ">
             <div className="relative h-full w-full">
                 <img
                     src={img1}
@@ -19,20 +19,18 @@ const Banner = () => {
                             color="white"
                             className="mb-4 text-3xl md:text-4xl lg:text-5xl"
                         >
-                            The Beauty of Nature
+                            Find your <br />
+                            <span className="text-pink-400"> Right Match</span> here
                         </Typography>
                         <Typography
                             variant="lead"
                             color="white"
                             className="mb-12 opacity-80"
                         >
-                            It is not so much for its beauty that the forest makes a claim
-                            upon men&apos;s hearts, as for that subtle something, that quality
-                            of air that emanation from old trees, that so wonderfully changes
-                            and renews a weary spirit.
+                            Most trusted Matrimony Brand in the World.
                         </Typography>
                         <div className="flex justify-center gap-2">
-                            <Button size="lg" color="white">
+                            <Button size="lg" color="pink">
                                 Explore
                             </Button>
                             <Button size="lg" color="white" variant="text">
@@ -55,20 +53,18 @@ const Banner = () => {
                             color="white"
                             className="mb-4 text-3xl md:text-4xl lg:text-5xl"
                         >
-                            The Beauty of Nature
+                            Find your <br />
+                            <span className="text-pink-400"> Right Match</span> here
                         </Typography>
                         <Typography
                             variant="lead"
                             color="white"
                             className="mb-12 opacity-80"
                         >
-                            It is not so much for its beauty that the forest makes a claim
-                            upon men&apos;s hearts, as for that subtle something, that quality
-                            of air that emanation from old trees, that so wonderfully changes
-                            and renews a weary spirit.
+                            Most trusted Matrimony Brand in the World.
                         </Typography>
                         <div className="flex gap-2">
-                            <Button size="lg" color="white">
+                            <Button size="lg" color="pink">
                                 Explore
                             </Button>
                             <Button size="lg" color="white" variant="text">
@@ -91,20 +87,18 @@ const Banner = () => {
                             color="white"
                             className="mb-4 text-3xl md:text-4xl lg:text-5xl"
                         >
-                            The Beauty of Nature
+                            Find your <br />
+                            <span className="text-pink-400"> Right Match</span> here
                         </Typography>
                         <Typography
                             variant="lead"
                             color="white"
                             className="mb-12 opacity-80"
                         >
-                            It is not so much for its beauty that the forest makes a claim
-                            upon men&apos;s hearts, as for that subtle something, that quality
-                            of air that emanation from old trees, that so wonderfully changes
-                            and renews a weary spirit.
+                            Most trusted Matrimony Brand in the World.
                         </Typography>
                         <div className="flex gap-2">
-                            <Button size="lg" color="white">
+                            <Button size="lg" color="pink">
                                 Explore
                             </Button>
                             <Button size="lg" color="white" variant="text">
