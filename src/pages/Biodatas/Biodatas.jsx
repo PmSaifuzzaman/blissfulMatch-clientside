@@ -16,8 +16,7 @@ const Biodatas = () => {
     return (
         <div>
             <Navigationbar></Navigationbar>
-            <h2 className="my-5">This is biodatas section</h2>
-            <div>
+            <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
                     biodatas.map(biodata => <BiodataCard key={biodata._id} biodata={biodata}></BiodataCard>)
                 }
