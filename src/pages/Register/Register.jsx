@@ -9,6 +9,7 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { authContext } from '../../providers/AuthProvider';
 import app from '../../firebase/firebase.config';
 import Navigationbar from '../../components/Navbar/Navbar';
+import { Input } from '@material-tailwind/react';
 
 
 
@@ -103,32 +104,34 @@ const Register = () => {
             <div className="max-w-lg shadow-xl shadow-red-300 mx-auto">
                 <h2 className="text-center mt-5 pt-8 text-4xl font-semibold">Register your account </h2>
                 <form onSubmit={handleRegister} className="card-body mx-auto">
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Your Name</span>
-                        </label>
-                        <input type="text" placeholder="Enter your name" name="name" className="input input-bordered" required />
-                    </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Photo URL</span>
-                        </label>
-                        <input type="text" placeholder="Enter your Photo url" name="photoUrl" className="input input-bordered" />
-                    </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Email</span>
-                        </label>
-                        <input type="email" placeholder="Enter your email" name="email" className="input input-bordered" required />
-                    </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Password</span>
-                        </label>
-                        <input type="password" placeholder="Enter password" name="password" className="input input-bordered" required />
-                    </div>
-                    <div className="form-control mt-6">
-                        <button className="btn bg-red-400 text-white">Register</button>
+                    <div className='px-10 pt-10 mx-auto space-y-2'>
+                        <div className="form-control space-y-2">
+                            <label className="label">
+                                <span className="label-text">Your Name</span>
+                            </label><br />
+                            <Input type="text" placeholder="Enter your name" name="name" className="input input-bordered" required />
+                        </div>
+                        <div className="form-control space-y-2">
+                            <label className="label">
+                                <span className="label-text">Photo URL</span>
+                            </label><br />
+                            <Input type="text" placeholder="Enter your Photo url" name="photoUrl" className="input input-bordered" />
+                        </div>
+                        <div className="form-control space-y-2">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label><br />
+                            <Input type="email" placeholder="Enter your email" name="email" className="input input-bordered" required />
+                        </div>
+                        <div className="form-control space-y-2">
+                            <label className="label">
+                                <span className="label-text">Password</span>
+                            </label><br />
+                            <Input type="password" placeholder="Enter password" name="password" className="input input-bordered" required />
+                        </div>
+                        <div className="form-control">
+                            <button className="btn my-5 bg-pink-400 w-full py-2 rounded-lg text-white">Register</button>
+                        </div>
                     </div>
                 </form>
                 <ToastContainer></ToastContainer>
@@ -139,8 +142,8 @@ const Register = () => {
                 {
                     registerSuccess && toast("User created Successfully")
                 }
-                <div className='flex items-center justify-center pb-2'><button onClick={handleGoogleLogin} className='btn text-red-400'> <FaGoogle></FaGoogle> Log in with google</button></div>
-                <p className="text-center pb-4">Already Have An Account ? <Link className="underline text-red-400 font-semibold" to={"/login"}>Login</Link></p>
+                <div className='max-w-xs mx-auto flex gap-3 items-center justify-center pb-2 border border-pink-200 rounded-xl mb-3 py-2'><FaGoogle className='text-pink-400'></FaGoogle><button onClick={handleGoogleLogin} className='btn text-pink-400'>  Log in with google</button></div>
+                <p className="text-center pb-4">Already Have An Account ? <Link className="underline text-pink-400 font-semibold" to={"/login"}>Login</Link></p>
             </div>
         </div>
     );
