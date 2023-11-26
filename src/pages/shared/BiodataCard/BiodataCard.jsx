@@ -9,9 +9,12 @@ import {
 } from "@material-tailwind/react";
 import { Link } from 'react-router-dom';
 
-const BiodataCard = ({ biodata }) => {
 
-    const { ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, _id } = biodata
+const BiodataCard = ( { biodata } ) => {
+
+    const { ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, _id } = biodata;
+
+    
 
     return (
         <Card className="bg-pink-50">
@@ -50,7 +53,7 @@ const BiodataCard = ({ biodata }) => {
             </CardBody>
             <CardFooter className="pt-0">
                 <Link to={`/details/${_id}`}>
-                    <Button                        
+                    <Button
                         ripple={false}
                         fullWidth={true}
                         className="bg-pink-400 text-white shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
@@ -70,4 +73,5 @@ export default BiodataCard;
 
 BiodataCard.propTypes = {
     biodata: PropTypes.object,
+    
 }

@@ -18,12 +18,14 @@ const BiodataDetails = () => {
 
     const [biodatas, setBiodatas] = useState([]);
 
+
     const singleBiodata = useLoaderData()
 
     const { ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight } = singleBiodata;
 
     useEffect(() => {
-        fetch("http://localhost:5000/biodatas")
+        const url = "http://localhost:5000/biodatas";
+        fetch(url)
             .then(res => res.json())
             .then(data => setBiodatas(data))
     }, [])
@@ -121,22 +123,22 @@ const BiodataDetails = () => {
                         </CardBody>
                         <CardFooter className="pt-0">
                             <div className="flex justify-between">
-                            <Button
-                                ripple={false}
-                                
-                                className="bg-pink-400 text-2xl px-3 text-white shadow-none rounded-full hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-                            >
-                                <FaHeart></FaHeart>
-                            </Button>
-                            <Button
-                                ripple={false}
-                                
-                                className="bg-pink-400 text-white shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-                            >
-                                Request
-                            </Button>
+                                <Button
+                                    ripple={false}
+
+                                    className="bg-pink-400 text-2xl px-3 text-white shadow-none rounded-full hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+                                >
+                                    <FaHeart></FaHeart>
+                                </Button>
+                                <Button
+                                    ripple={false}
+
+                                    className="bg-pink-400 text-white shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+                                >
+                                    Request
+                                </Button>
                             </div>
-                            
+
                         </CardFooter>
                     </Card>
                 </div>
