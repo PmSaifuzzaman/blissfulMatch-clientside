@@ -7,10 +7,11 @@ import {
     Typography,
     Button,
 } from "@material-tailwind/react";
+import { Link } from 'react-router-dom';
 
 const BiodataCard = ({ biodata }) => {
 
-    const { ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName } = biodata
+    const { ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, _id } = biodata
 
     return (
         <Card className="bg-pink-50">
@@ -48,13 +49,15 @@ const BiodataCard = ({ biodata }) => {
                 </div>
             </CardBody>
             <CardFooter className="pt-0">
-                <Button
-                    ripple={false}
-                    fullWidth={true}
-                    className="bg-pink-400 text-white shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-                >
-                    View Profile
-                </Button>
+                <Link to={`/details/${_id}`}>
+                    <Button                        
+                        ripple={false}
+                        fullWidth={true}
+                        className="bg-pink-400 text-white shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+                    >
+                        View Profile
+                    </Button>
+                </Link>
             </CardFooter>
         </Card>
     );
