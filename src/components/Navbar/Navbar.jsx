@@ -5,10 +5,13 @@ import {
     Button,
     IconButton,
 } from "@material-tailwind/react";
-import React from "react";
+import React, { useContext } from "react";
 
 import logo from "../../assets/images/logo/logo-1.gif"
 import { Link, NavLink } from "react-router-dom";
+import { authContext } from "../../providers/AuthProvider";
+import { getAuth } from "firebase/auth";
+import { toast } from "react-toastify";
 
 
 
@@ -22,6 +25,26 @@ const Navigationbar = () => {
             () => window.innerWidth >= 960 && setOpenNav(false),
         );
     }, []);
+
+    // Access Context api
+    const { logOut, user } = useContext(authContext);
+
+    const email = user ? user.email : null;
+    console.log(email)
+
+    const auth = getAuth()
+
+    // Log out messege
+    const handleLogOut = () => {
+        logOut(auth)
+            .then(() => {
+                toast('Log out Successfully')
+            })
+            .catch(() => {
+                toast('Cannot log out')
+            })
+    }
+
 
     const navList = (
         <ul className="flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -93,24 +116,28 @@ const Navigationbar = () => {
                     </Typography>
                     <div className="flex items-center gap-4">
                         <div className="mr-4 hidden lg:block">{navList}</div>
-                        <div className="flex items-center gap-x-1">
-                            <Button
-                                variant="text"
+
+
+                        {
+                            user ? <Button onClick={handleLogOut}
+                                color="pink"
                                 size="sm"
-                                className="hidden lg:inline-block text-pink-400"
-                            >
-                                <span>Log In</span>
-                            </Button>
-                            <Link to={'/login'}>
-                                <Button
-                                    color="pink"
-                                    size="sm"
-                                    className="hidden lg:inline-block"
-                                >
-                                    <span>Sign in</span>
-                                </Button>
-                            </Link>
-                        </div>
+                                className="hidden lg:inline-block">LogOut</Button>
+                                :
+                                <Link to={'/login'}>
+                                    <Button
+                                        color="pink"
+                                        size="sm"
+                                        className="hidden lg:inline-block"
+                                    >
+                                        <span>Sign in</span>
+                                    </Button>
+                                </Link>
+                        }
+
+
+
+
                         <IconButton
                             variant="text"
                             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -152,16 +179,16 @@ const Navigationbar = () => {
                 </div>
                 <MobileNav open={openNav}>
                     {navList}
-                    <div className="flex items-center gap-x-1">
-                        <Button fullWidth variant="text" size="sm" className="">
-                            <span>Log In</span>
-                        </Button>
+                    {
+                        user?   <Button onClick={handleLogOut}
+                        fullWidth color="pink" size="sm" className="">LogOut</Button>  :
+
                         <Link to={"/login"}>
                             <Button fullWidth color="pink" size="sm" className="">
                                 <span>Sign in</span>
                             </Button>
                         </Link>
-                    </div>
+                    }
                 </MobileNav>
             </Navbar>
         </div>
