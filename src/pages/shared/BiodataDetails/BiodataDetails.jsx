@@ -10,18 +10,28 @@ import {
 import { useLoaderData } from "react-router-dom";
 import Navigationbar from "../../../components/Navbar/Navbar";
 import { FaHeart } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import BiodataCard from "../BiodataCard/BiodataCard";
 
 
 const BiodataDetails = () => {
+
+    const [biodatas, setBiodatas] = useState([]);
 
     const singleBiodata = useLoaderData()
 
     const { ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight } = singleBiodata;
 
+    useEffect(() => {
+        fetch("http://localhost:5000/biodatas")
+            .then(res => res.json())
+            .then(data => setBiodatas(data))
+    }, [])
+
     return (
         <div>
             <Navigationbar></Navigationbar>
-            <div className="flex flex-row">
+            <div className="flex flex-row gap-5">
                 <div className="basis-3/5 ">
                     <Card className="">
                         <CardHeader shadow={false} floated={false} className="h-96">
@@ -130,8 +140,16 @@ const BiodataDetails = () => {
                         </CardFooter>
                     </Card>
                 </div>
-                <div className="basis-2/5 bg-red-400">
-
+                {/* related profile section */}
+                <div className="basis-2/5 ">
+                    <div>
+                        <h2 className="text-2xl font-bold">Related Profiles</h2>
+                    </div>
+                    <div className="grid grid-cols-1 gap-5">
+                        {
+                            biodatas.map(biodata => <BiodataCard key={biodata._id} biodata={biodata}></BiodataCard>)
+                        }
+                    </div>
                 </div>
 
             </div>
