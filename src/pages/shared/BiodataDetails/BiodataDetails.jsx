@@ -9,6 +9,7 @@ import {
 
 import { useLoaderData } from "react-router-dom";
 import Navigationbar from "../../../components/Navbar/Navbar";
+import { FaHeart } from "react-icons/fa";
 
 
 const BiodataDetails = () => {
@@ -109,13 +110,13 @@ const BiodataDetails = () => {
                             </div>
                         </CardBody>
                         <CardFooter className="pt-0">
-                            <div>
+                            <div className="flex justify-between">
                             <Button
                                 ripple={false}
                                 
-                                className="bg-pink-400 text-white shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+                                className="bg-pink-400 text-2xl px-3 text-white shadow-none rounded-full hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
                             >
-                                Request
+                                <FaHeart></FaHeart>
                             </Button>
                             <Button
                                 ripple={false}
