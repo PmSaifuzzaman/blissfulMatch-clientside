@@ -8,7 +8,7 @@ import {
 import React from "react";
 
 import logo from "../../assets/images/logo/logo-1.gif"
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 
@@ -101,13 +101,15 @@ const Navigationbar = () => {
                             >
                                 <span>Log In</span>
                             </Button>
-                            <Button
-                                color="pink"
-                                size="sm"
-                                className="hidden lg:inline-block"
-                            >
-                                <span>Sign in</span>
-                            </Button>
+                            <Link to={'/login'}>
+                                <Button
+                                    color="pink"
+                                    size="sm"
+                                    className="hidden lg:inline-block"
+                                >
+                                    <span>Sign in</span>
+                                </Button>
+                            </Link>
                         </div>
                         <IconButton
                             variant="text"
@@ -154,9 +156,11 @@ const Navigationbar = () => {
                         <Button fullWidth variant="text" size="sm" className="">
                             <span>Log In</span>
                         </Button>
-                        <Button fullWidth color="pink" size="sm" className="">
-                            <span>Sign in</span>
-                        </Button>
+                        <Link to={"/login"}>
+                            <Button fullWidth color="pink" size="sm" className="">
+                                <span>Sign in</span>
+                            </Button>
+                        </Link>
                     </div>
                 </MobileNav>
             </Navbar>
