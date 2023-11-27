@@ -1,6 +1,6 @@
 import {List, ListItem, ListItemPrefix } from "@material-tailwind/react";
 
-import { FaEdit, FaEye, FaHeart, FaPersonBooth, FaSignOutAlt, } from "react-icons/fa";
+import { FaEdit, FaEye, FaHeart, FaHome, FaPersonBooth, FaSignOutAlt, } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 
 
@@ -9,6 +9,12 @@ const Dashboard = () => {
         <div className="lg:max-w-7xl lg:mx-auto flex">
             <div className="basis-1/5 h-screen bg-pink-300 my-5">
                 <List className="menu p-4 space-y-4">
+                    <NavLink to={"/"}>
+                        <ListItem>
+                            <ListItemPrefix><FaHome></FaHome></ListItemPrefix>
+                            Home
+                        </ListItem>
+                    </NavLink>
                     <NavLink>
                         <ListItem>
                             <ListItemPrefix><FaEdit></FaEdit></ListItemPrefix>
@@ -41,7 +47,7 @@ const Dashboard = () => {
                     </NavLink>
                 </List>
             </div>
-            <div className="flex-1 ">
+            <div className="flex-1 m-10 p-10">
 
                 <Outlet></Outlet>
             </div>
