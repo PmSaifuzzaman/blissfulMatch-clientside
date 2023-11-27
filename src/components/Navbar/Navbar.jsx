@@ -1,6 +1,6 @@
+import { Collapse } from '@material-tailwind/react';
 import {
     Navbar,
-    MobileNav,
     Typography,
     Button,
     IconButton,
@@ -190,7 +190,8 @@ const Navigationbar = () => {
                         </IconButton>
                     </div>
                 </div>
-                <MobileNav open={openNav}>
+
+                <Collapse open={openNav}>
                     {navList}
                     {
                         user ? <Button onClick={handleLogOut}
@@ -202,7 +203,8 @@ const Navigationbar = () => {
                                 </Button>
                             </Link>
                     }
-                </MobileNav>
+                </Collapse>
+
             </Navbar>
         </div>
     );

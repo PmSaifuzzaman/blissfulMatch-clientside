@@ -12,6 +12,7 @@ import Navigationbar from "../../../components/Navbar/Navbar";
 import { FaHeart } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import BiodataCard from "../BiodataCard/BiodataCard";
+import useAuth from "../../../hooks/useAuth";
 
 
 const BiodataDetails = () => {
@@ -21,6 +22,9 @@ const BiodataDetails = () => {
 
     const singleBiodata = useLoaderData()
 
+    const {user} = useAuth()
+    console.log(user?.email)
+
     const { ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight } = singleBiodata;
 
     useEffect(() => {
@@ -29,6 +33,10 @@ const BiodataDetails = () => {
             .then(res => res.json())
             .then(data => setBiodatas(data))
     }, [])
+
+    const handleAddFavourite = (item) => {
+        console.log(item)
+    }
 
     return (
         <div>
@@ -124,8 +132,8 @@ const BiodataDetails = () => {
                         <CardFooter className="pt-0">
                             <div className="flex justify-between">
                                 <Button
+                                    onClick={() => handleAddFavourite(singleBiodata)}
                                     ripple={false}
-
                                     className="bg-pink-400 text-2xl px-3 text-white shadow-none rounded-full hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
                                 >
                                     <FaHeart></FaHeart>
