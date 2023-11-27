@@ -16,6 +16,7 @@ import useAuth from "../../../hooks/useAuth";
 
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useFavourites from "../../../hooks/useFavourites";
 
 
 const BiodataDetails = () => {
@@ -24,6 +25,7 @@ const BiodataDetails = () => {
 
 
     const singleBiodata = useLoaderData()
+    const[,refetch] = useFavourites();
 
     // Get user from authContext
     const {user} = useAuth();
@@ -61,6 +63,8 @@ const BiodataDetails = () => {
                         imageHeight: 200,
                         imageAlt: "Custom image"
                       });
+                    //   To update count
+                      refetch()
                 }
             })
         }
