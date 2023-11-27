@@ -13,6 +13,7 @@ import { FaHeart } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import BiodataCard from "../BiodataCard/BiodataCard";
 import useAuth from "../../../hooks/useAuth";
+import axios from "axios";
 
 
 const BiodataDetails = () => {
@@ -22,10 +23,11 @@ const BiodataDetails = () => {
 
     const singleBiodata = useLoaderData()
 
-    const {user} = useAuth()
+    // Get user from authContext
+    const {user} = useAuth();
     console.log(user?.email)
 
-    const { ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight } = singleBiodata;
+    const { ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight,ContactEmail, MobileNumber, MembershipType, _id } = singleBiodata;
 
     useEffect(() => {
         const url = "http://localhost:5000/biodatas";
@@ -35,7 +37,20 @@ const BiodataDetails = () => {
     }, [])
 
     const handleAddFavourite = (item) => {
-        console.log(item)
+        if(user && user?.email){
+
+            console.log(user?.email, item)
+
+            const favouriteItem = {
+                userEmail : user?.email,
+                profileId : _id,
+                ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight, ContactEmail, MobileNumber, MembershipType
+            }
+            axios.post('http://localhost:5000/favourites', favouriteItem)
+            .then(res => {
+                console.log(res.data)
+            })
+        }
     }
 
     return (
