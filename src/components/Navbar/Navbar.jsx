@@ -4,6 +4,7 @@ import {
     Typography,
     Button,
     IconButton,
+    Badge,
 } from "@material-tailwind/react";
 import React, { useContext } from "react";
 
@@ -12,6 +13,7 @@ import { Link, NavLink } from "react-router-dom";
 import { authContext } from "../../providers/AuthProvider";
 import { getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
+import { FaCartArrowDown } from "react-icons/fa";
 
 
 
@@ -100,6 +102,18 @@ const Navigationbar = () => {
                     Contact Us
                 </NavLink>
             </Typography>
+            <Typography
+                as="li"
+                variant="small"
+                color="pink"
+                className="p-1 font-normal"
+            >
+                <NavLink>
+                    <Badge content="5">
+                        <Button className="p-3 rounded-full bg-blue-gray-50"><FaCartArrowDown className="text-2xl text-pink-400"></FaCartArrowDown></Button>
+                    </Badge>
+                </NavLink>
+            </Typography>
         </ul>
     );
 
@@ -126,9 +140,8 @@ const Navigationbar = () => {
                                 :
                                 <Link to={'/login'}>
                                     <Button
-                                        color="pink"
                                         size="sm"
-                                        className="hidden lg:inline-block"
+                                        className="hidden lg:inline-block bg-pink-400"
                                     >
                                         <span>Sign in</span>
                                     </Button>
@@ -180,14 +193,14 @@ const Navigationbar = () => {
                 <MobileNav open={openNav}>
                     {navList}
                     {
-                        user?   <Button onClick={handleLogOut}
-                        fullWidth color="pink" size="sm" className="">LogOut</Button>  :
+                        user ? <Button onClick={handleLogOut}
+                            fullWidth color="pink" size="sm" className="">LogOut</Button> :
 
-                        <Link to={"/login"}>
-                            <Button fullWidth color="pink" size="sm" className="">
-                                <span>Sign in</span>
-                            </Button>
-                        </Link>
+                            <Link to={"/login"}>
+                                <Button fullWidth color="pink" size="sm" className="">
+                                    <span>Sign in</span>
+                                </Button>
+                            </Link>
                     }
                 </MobileNav>
             </Navbar>
