@@ -6,6 +6,8 @@ import Biodatas from "../pages/Biodatas/Biodatas";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import BiodataDetails from "../pages/shared/BiodataDetails/BiodataDetails";
+import Dashboard from "../layouts/Dashboard";
+import Favourites from "../pages/Dashboard/Favourites/Favourites";
 
 
 const router = createBrowserRouter([
@@ -37,6 +39,16 @@ const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: 'favourites',
+        element: <Favourites></Favourites>
+      }
+    ]
+  }
 ]);
 
 export default router;

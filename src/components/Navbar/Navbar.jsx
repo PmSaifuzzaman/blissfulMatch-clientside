@@ -111,7 +111,7 @@ const Navigationbar = () => {
                 color="pink"
                 className="p-1 font-normal"
             >
-                <NavLink>
+                <NavLink to={"/dashboard/favourites"}>
                     <Badge content={favourites.length}>
                         <Button className="p-3 rounded-full bg-blue-gray-50"><FaCartArrowDown className="text-2xl text-pink-400"></FaCartArrowDown></Button>
                     </Badge>
