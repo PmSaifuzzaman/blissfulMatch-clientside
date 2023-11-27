@@ -13,7 +13,9 @@ import { FaHeart } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import BiodataCard from "../BiodataCard/BiodataCard";
 import useAuth from "../../../hooks/useAuth";
-import axios from "axios";
+
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
 const BiodataDetails = () => {
@@ -25,7 +27,8 @@ const BiodataDetails = () => {
 
     // Get user from authContext
     const {user} = useAuth();
-    console.log(user?.email)
+
+    const axiosSecure = useAxiosSecure()
 
     const { ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight,ContactEmail, MobileNumber, MembershipType, _id } = singleBiodata;
 
@@ -46,9 +49,19 @@ const BiodataDetails = () => {
                 profileId : _id,
                 ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight, ContactEmail, MobileNumber, MembershipType
             }
-            axios.post('http://localhost:5000/favourites', favouriteItem)
+            axiosSecure.post('/favourites', favouriteItem)
             .then(res => {
                 console.log(res.data)
+                if(res.data.insertedId){
+                    Swal.fire({
+                        text: "Added to Favourites Successfully",
+                        imageUrl: ProfileImage,
+                        icon: "success",
+                        imageWidth: 400,
+                        imageHeight: 200,
+                        imageAlt: "Custom image"
+                      });
+                }
             })
         }
     }

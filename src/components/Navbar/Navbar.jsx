@@ -14,12 +14,15 @@ import { authContext } from "../../providers/AuthProvider";
 import { getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
 import { FaCartArrowDown } from "react-icons/fa";
+import useFavourites from '../../hooks/useFavourites';
 
 
 
 const Navigationbar = () => {
 
     const [openNav, setOpenNav] = React.useState(false);
+
+    const[favourites] = useFavourites();
 
     React.useEffect(() => {
         window.addEventListener(
@@ -109,7 +112,7 @@ const Navigationbar = () => {
                 className="p-1 font-normal"
             >
                 <NavLink>
-                    <Badge content="5">
+                    <Badge content={favourites.length}>
                         <Button className="p-3 rounded-full bg-blue-gray-50"><FaCartArrowDown className="text-2xl text-pink-400"></FaCartArrowDown></Button>
                     </Badge>
                 </NavLink>
