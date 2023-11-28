@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import PropTypes from 'prop-types';
 import app from "../firebase/firebase.config";
-// import axios from "axios";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+
 
 
 export const authContext = createContext(null);
@@ -13,6 +14,9 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
+
+    // const axiosPublic = useAxiosPublic()
+    const axiosPublic = useAxiosPublic()
 
     // User creation
     const createUser = (email, password) => {
@@ -43,25 +47,25 @@ const AuthProvider = ({ children }) => {
 
             console.log("User in the current auth state", currentUser)
             setUser(currentUser);
-            setLoading(false);
+
 
             // If there is a user then issue a token by Jwt
-            // if(currentUser){
-            //     axios.post('https://food-sharing-community-server.vercel.app/api/v1/auth/access-token', loggedUser, {withCredentials:true})
-            //     .then(res => {
-            //         console.log(res.data)
-            //     })
-            // }
-            // else{
-            //     axios.post('https://food-sharing-community-server.vercel.app/api/v1/auth/logout', loggedUser, {withCredentials:true})
-            //     .then(res => {
-            //         console.log(res.data)
-            //     })
-            // }
-
+            if (currentUser) {
+                const userInfo = { ContactEmail: currentUser.email };
+                axiosPublic.post('/jwt', userInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token);
+                        }
+                    })
+            }
+            else {
+                localStorage.removeItem('access-token');
+            }
+            setLoading(false);
         })
         return unSubscribe;
-    }, []);
+    }, [axiosPublic]);
 
 
     const authInfo = {
