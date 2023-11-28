@@ -41,6 +41,15 @@ const Register = () => {
 
                 const user = result.user;
                 console.log(user);
+                const userInfo ={
+                    Name: result.user?.displayName,
+                    ContactEmail: result.user?.email
+                }
+                axiosPublic.post('/biodatas', userInfo)
+                .then(res => {
+                    console.log(res)
+                })
+
                 toast('Login Successfully')
 
                 //  nevigate after log in
