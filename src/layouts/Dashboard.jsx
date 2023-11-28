@@ -33,7 +33,7 @@ const Dashboard = () => {
                             My Contact Requests
                         </ListItem>
                     </NavLink>
-                    <NavLink to="/dashboard/favourites">
+                    <NavLink to="/dashboard/favourites" activeClassName="active-link">
                         <ListItem>
                             <ListItemPrefix><FaHeart></FaHeart></ListItemPrefix>
                             Favourites Biodata

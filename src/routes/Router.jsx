@@ -8,6 +8,7 @@ import Register from "../pages/Register/Register";
 import BiodataDetails from "../pages/shared/BiodataDetails/BiodataDetails";
 import Dashboard from "../layouts/Dashboard";
 import Favourites from "../pages/Dashboard/Favourites/Favourites";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/biodatas",
-        element: <Biodatas></Biodatas>
+        element: <PrivateRoute><Biodatas></Biodatas></PrivateRoute>
       },
       {
         path: "/login",
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/details/:id",
-        element: <BiodataDetails></BiodataDetails>,
+        element: <PrivateRoute><BiodataDetails></BiodataDetails></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`) 
       }
     ],

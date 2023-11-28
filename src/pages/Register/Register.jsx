@@ -10,6 +10,8 @@ import { authContext } from '../../providers/AuthProvider';
 import app from '../../firebase/firebase.config';
 import Navigationbar from '../../components/Navbar/Navbar';
 import { Input } from '@material-tailwind/react';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 
 
@@ -23,7 +25,7 @@ const Register = () => {
 
     // Destructure from context api
     const { createUser } = useContext(authContext);
-
+    const axiosPublic = useAxiosPublic()
 
     const visitLocation = useLocation();
 
@@ -83,6 +85,25 @@ const Register = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user)
+
+                const userInfo = {
+                    Name: name,
+                    ContactEmail: user.email
+                }
+                axiosPublic.post('/biodatas', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log('user added to the database')
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'User created successfully.',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    
+                                }
+                            })
                 // set
                 setRegisterSuccess('User created successfully')
                 // Navigate user after registration
