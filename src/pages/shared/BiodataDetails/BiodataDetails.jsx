@@ -25,14 +25,14 @@ const BiodataDetails = () => {
 
 
     const singleBiodata = useLoaderData()
-    const[,refetch] = useFavourites();
+    const [, refetch] = useFavourites();
 
     // Get user from authContext
-    const {user} = useAuth();
+    const { user } = useAuth();
 
     const axiosSecure = useAxiosSecure()
 
-    const { ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight,ContactEmail, MobileNumber, MembershipType, _id } = singleBiodata;
+    const { ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight, ContactEmail, MobileNumber, MembershipType, _id } = singleBiodata;
 
     useEffect(() => {
         const url = "http://localhost:5000/biodatas";
@@ -42,31 +42,61 @@ const BiodataDetails = () => {
     }, [])
 
     const handleAddFavourite = (item) => {
-        if(user && user?.email){
+        if (user && user?.email) {
 
             console.log(user?.email, item)
 
             const favouriteItem = {
-                userEmail : user?.email,
-                profileId : _id,
+                userEmail: user?.email,
+                profileId: _id,
                 ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight, ContactEmail, MobileNumber, MembershipType
             }
             axiosSecure.post('/favourites', favouriteItem)
-            .then(res => {
-                console.log(res.data)
-                if(res.data.insertedId){
-                    Swal.fire({
-                        text: "Added to Favourites Successfully",
-                        imageUrl: ProfileImage,
-                        icon: "success",
-                        imageWidth: 400,
-                        imageHeight: 200,
-                        imageAlt: "Custom image"
-                      });
-                    //   To update count
-                      refetch()
-                }
-            })
+                .then(res => {
+                    console.log(res.data)
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            text: "Added to Favourites Successfully",
+                            imageUrl: ProfileImage,
+                            icon: "success",
+                            imageWidth: 400,
+                            imageHeight: 200,
+                            imageAlt: "Custom image"
+                        });
+                        //   To update count
+                        refetch()
+                    }
+                })
+        }
+    }
+
+
+    const handleAddRequest = (item) => {
+        if (user && user?.email) {
+
+            console.log(user?.email, item)
+
+            const requestItem = {
+                userEmail: user?.email,
+                profileId: _id,
+                ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight, ContactEmail, MobileNumber, MembershipType
+            }
+            axiosSecure.post('/requests', requestItem)
+                .then(res => {
+                    console.log(res.data)
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            text: "Added to Requested contact Successfully",
+                            imageUrl: ProfileImage,
+                            icon: "success",
+                            imageWidth: 400,
+                            imageHeight: 200,
+                            imageAlt: "Custom image"
+                        });
+                        //   To update count
+                        refetch()
+                    }
+                })
         }
     }
 
@@ -171,6 +201,7 @@ const BiodataDetails = () => {
                                     <FaHeart></FaHeart>
                                 </Button>
                                 <Button
+                                    onClick={() => handleAddRequest(singleBiodata)}
                                     ripple={false}
 
                                     className="bg-pink-400 text-white shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"

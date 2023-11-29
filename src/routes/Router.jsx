@@ -10,6 +10,7 @@ import Dashboard from "../layouts/Dashboard";
 import Favourites from "../pages/Dashboard/Favourites/Favourites";
 import PrivateRoute from "./PrivateRoute";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
+import Requests from "../pages/Dashboard/Requests/Requests";
 
 
 
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: 'favourites',
         element: <Favourites></Favourites>
+      },
+      {
+        path: 'requests',
+        element: <Requests></Requests>
       },
 
 

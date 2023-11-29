@@ -74,8 +74,8 @@ const Dashboard = () => {
                                         View Biodata
                                     </ListItem>
                                 </NavLink>
-                                <NavLink>
-                                    <ListItem>
+                                <NavLink to="/dashboard/requests">
+                                    <ListItem >
                                         <ListItemPrefix><FaPersonBooth></FaPersonBooth></ListItemPrefix>
                                         My Contact Requests
                                     </ListItem>
