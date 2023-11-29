@@ -3,11 +3,15 @@ import { List, ListItem, ListItemPrefix, Spinner } from "@material-tailwind/reac
 import { FaDashcube, FaEdit, FaEye, FaHeart, FaHome, FaPersonBooth, FaSign, FaSignOutAlt,  FaUsers, } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
+import useAuth from "../hooks/useAuth";
 
 
 
 
 const Dashboard = () => {
+
+    const{user} = useAuth()
+    const email = user.email
 
     const [isAdmin,  isAdminLoading] = useAdmin();
 
@@ -62,7 +66,7 @@ const Dashboard = () => {
                             </>
                             :
                             <>
-                                <NavLink>
+                                <NavLink to={`/dashboard/editBiodata/${email}`}>
                                     <ListItem>
                                         <ListItemPrefix><FaEdit></FaEdit></ListItemPrefix>
                                         Edit biodata

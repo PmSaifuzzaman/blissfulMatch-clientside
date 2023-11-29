@@ -11,6 +11,7 @@ import Favourites from "../pages/Dashboard/Favourites/Favourites";
 import PrivateRoute from "./PrivateRoute";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import Requests from "../pages/Dashboard/Requests/Requests";
+import EditBiodata from "../pages/Dashboard/NormalUser/EditBiodata/EditBiodata";
 
 
 
@@ -55,7 +56,11 @@ const router = createBrowserRouter([
         path: 'requests',
         element: <Requests></Requests>
       },
-
+      {
+        path: 'editBiodata/:email',
+        element: <EditBiodata></EditBiodata>,
+        loader: ({ params }) => fetch(`http://localhost:5000/users/${params.email}`)
+      },
 
       // Admin related route
       {

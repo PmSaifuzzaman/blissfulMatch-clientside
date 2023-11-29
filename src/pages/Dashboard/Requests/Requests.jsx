@@ -1,6 +1,6 @@
 import { Button } from "@material-tailwind/react";
 
-import { FaTrashAlt } from "react-icons/fa";
+import { FaPaypal, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useRequests from "../../../hooks/useRequests";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -54,6 +54,7 @@ const Requests = () => {
                             <th className="py-5">Mobile</th>
                             <th className="py-5">Email</th>
                             <th className="py-5">Action</th>
+                            <th className="py-5 text-center">Pay</th>
                         </tr>
                     </thead>
                     <tbody className="text-left">
@@ -65,6 +66,7 @@ const Requests = () => {
                                 <td className="py-5 shadow-lg">{request.MobileNumber}</td>
                                 <td className="py-5 shadow-lg">{request.ContactEmail}</td>
                                 <td className="py-5 shadow-lg"><Button onClick={() => handleDelete(request._id)} className="bg-blue-gray-100 p-3 ml-5 rounded-full text-red-500"><FaTrashAlt /></Button></td>
+                                <td className="py-5 shadow-lg"><Button  className="bg-blue-gray-100 p-3 ml-5 rounded-full text-red-500"><FaPaypal /></Button></td>
                                 
                             </tr>)
                         }
