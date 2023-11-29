@@ -43,9 +43,10 @@ const Register = () => {
                 console.log(user);
                 const userInfo ={
                     Name: result.user?.displayName,
+                    email: result.user?.email,
                     ContactEmail: result.user?.email
                 }
-                axiosPublic.post('/biodatas', userInfo)
+                axiosPublic.post('/users', userInfo)
                 .then(res => {
                     console.log(res)
                 })
@@ -97,9 +98,10 @@ const Register = () => {
 
                 const userInfo = {
                     Name: name,
-                    ContactEmail: user.email
+                    email: email,
+                    ContactEmail: email
                 }
-                axiosPublic.post('/biodatas', userInfo)
+                axiosPublic.post('/users', userInfo)
                             .then(res => {
                                 if (res.data.insertedId) {
                                     console.log('user added to the database')

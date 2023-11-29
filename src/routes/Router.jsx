@@ -9,7 +9,8 @@ import BiodataDetails from "../pages/shared/BiodataDetails/BiodataDetails";
 import Dashboard from "../layouts/Dashboard";
 import Favourites from "../pages/Dashboard/Favourites/Favourites";
 import PrivateRoute from "./PrivateRoute";
-import Users from "../pages/Dashboard/Admin/Users/Users";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
+
 
 
 const router = createBrowserRouter([
@@ -49,11 +50,14 @@ const router = createBrowserRouter([
         path: 'favourites',
         element: <Favourites></Favourites>
       },
+
+
       // Admin related route
       {
-        path: 'users',
-        element: <Users></Users>
+        path: "users",
+        element: <ManageUsers></ManageUsers>
       }
+      
     ]
   }
 ]);

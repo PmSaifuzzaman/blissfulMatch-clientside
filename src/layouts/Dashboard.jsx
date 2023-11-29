@@ -1,7 +1,8 @@
 import { List, ListItem, ListItemPrefix } from "@material-tailwind/react";
 
-import { FaDashcube, FaEdit, FaEye, FaHeart, FaHome, FaPersonBooth, FaSign, FaSignOutAlt, FaUser, } from "react-icons/fa";
+import { FaDashcube, FaEdit, FaEye, FaHeart, FaHome, FaPersonBooth, FaSign, FaSignOutAlt,  FaUsers, } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+
 
 
 const Dashboard = () => {
@@ -29,7 +30,7 @@ const Dashboard = () => {
                                 </NavLink>
                                 <NavLink to={'/dashboard/users'}>
                                     <ListItem>
-                                        <ListItemPrefix><FaUser></FaUser></ListItemPrefix>
+                                        <ListItemPrefix><FaUsers></FaUsers></ListItemPrefix>
                                         Manage user
                                     </ListItem>
                                 </NavLink>
@@ -39,7 +40,7 @@ const Dashboard = () => {
                                         Approved Premium
                                     </ListItem>
                                 </NavLink>
-                                <NavLink  >
+                                <NavLink>
                                     <ListItem>
                                         <ListItemPrefix><FaHeart></FaHeart></ListItemPrefix>
                                         Approved Contact requests
@@ -84,6 +85,7 @@ const Dashboard = () => {
                                         Log out
                                     </ListItem>
                                 </NavLink>
+
                             </>
                     }
 
