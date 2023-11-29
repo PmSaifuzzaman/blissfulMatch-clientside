@@ -13,6 +13,7 @@ import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import Requests from "../pages/Dashboard/Requests/Requests";
 import EditBiodata from "../pages/Dashboard/NormalUser/EditBiodata/EditBiodata";
 import ContactUs from "../components/ContactUs/ContactUs";
+import AboutUs from "../components/AboutUs/AboutUs";
 
 
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/contactUs",
         element: <ContactUs></ContactUs>
+      },
+      {
+        path: "/aboutUs",
+        element: <AboutUs></AboutUs>
       },
       {
         path: "/login",
