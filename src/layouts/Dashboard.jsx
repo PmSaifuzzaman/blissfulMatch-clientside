@@ -1,23 +1,34 @@
-import { List, ListItem, ListItemPrefix, Spinner } from "@material-tailwind/react";
+import { Button, List, ListItem, ListItemPrefix, Spinner } from "@material-tailwind/react";
 
-import { FaDashcube, FaEdit, FaEye, FaHeart, FaHome, FaPersonBooth, FaSign, FaSignOutAlt,  FaUsers, } from "react-icons/fa";
+import { FaDashcube, FaEdit, FaEye, FaHeart, FaHome, FaPersonBooth, FaSign, FaSignOutAlt, FaUsers, } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 
 
 
 const Dashboard = () => {
 
-    const{user} = useAuth()
+    const { user, logOut } = useAuth()
     const email = user.email
 
-    const [isAdmin,  isAdminLoading] = useAdmin();
+    const [isAdmin, isAdminLoading] = useAdmin();
 
     if (isAdminLoading) {
         // Handle loading state...
         return <div>Loading... <Spinner></Spinner></div>;
+    }
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                toast('Log out Successfully')
+            })
+            .catch(() => {
+                toast('Cannot log out')
+            })
     }
 
     return (
@@ -57,12 +68,12 @@ const Dashboard = () => {
                                         Approved Contact requests
                                     </ListItem>
                                 </NavLink>
-                                <NavLink>
+                                <Button className="bg-transparent" onClick={handleLogOut}>
                                     <ListItem>
                                         <ListItemPrefix><FaSignOutAlt></FaSignOutAlt></ListItemPrefix>
                                         Log out
                                     </ListItem>
-                                </NavLink>
+                                </Button>
                             </>
                             :
                             <>
@@ -90,12 +101,14 @@ const Dashboard = () => {
                                         Favourites Biodata
                                     </ListItem>
                                 </NavLink>
-                                <NavLink>
+
+                                <Button className="bg-transparent" onClick={handleLogOut}>
                                     <ListItem>
                                         <ListItemPrefix><FaSignOutAlt></FaSignOutAlt></ListItemPrefix>
                                         Log out
                                     </ListItem>
-                                </NavLink>
+                                </Button>
+
 
                             </>
                     }
