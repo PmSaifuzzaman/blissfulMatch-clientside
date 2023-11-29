@@ -33,7 +33,7 @@ const Dashboard = () => {
 
     return (
         <div className="lg:max-w-7xl lg:mx-auto flex">
-            <div className="basis-1/5 h-screen bg-pink-300 my-5">
+            <div className="basis-1/5 h-full bg-pink-300 ">
                 <List className="menu p-4 space-y-4">
                     <NavLink to={"/"}>
                         <ListItem>
@@ -115,7 +115,7 @@ const Dashboard = () => {
 
                 </List>
             </div>
-            <div className="flex-1 m-10 p-10">
+            <div className="flex-1 mx-5 p-5">
 
                 <Outlet></Outlet>
             </div>

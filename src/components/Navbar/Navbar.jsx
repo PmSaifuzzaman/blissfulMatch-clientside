@@ -121,15 +121,15 @@ const Navigationbar = () => {
     );
 
     return (
-        <div className=" ">
-            <Navbar className="  top-0 z-10 backdrop-blur-none shadow-none  max-w-7xl mx-auto bg-transparent border-none rounded-none px-4 py-2 lg:px-8">
+        <div className="rounded-lg bg-pink-200">
+            <Navbar className="py-0 top-0 z-10 backdrop-blur-lg shadow-none  max-w-7xl mx-auto  border-none rounded-none px-4 py-2 lg:px-8">
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Typography
                         as="a"
                         href="#"
                         className="mr-4 cursor-pointer py-1.5 font-medium"
                     >
-                        <img className="w-24" src={logo} alt="" />
+                        <img className="w-24 bg-blue-gray-700 rounded-full p-2" src={logo} alt="" />
                     </Typography>
                     <div className="flex items-center gap-4">
                         <div className="mr-4 hidden lg:block">{navList}</div>

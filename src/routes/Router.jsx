@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoute";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import Requests from "../pages/Dashboard/Requests/Requests";
 import EditBiodata from "../pages/Dashboard/NormalUser/EditBiodata/EditBiodata";
+import ContactUs from "../components/ContactUs/ContactUs";
 
 
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/biodatas",
         element: <PrivateRoute><Biodatas></Biodatas></PrivateRoute>
+      },
+      {
+        path: "/contactUs",
+        element: <ContactUs></ContactUs>
       },
       {
         path: "/login",

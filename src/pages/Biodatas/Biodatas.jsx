@@ -32,8 +32,8 @@ const Biodatas = () => {
             <Navigationbar></Navigationbar>
             <div>
                 <React.Fragment>
-                    <div className="flex justify-center">
-                        <Button onClick={openDrawer} variant="outlined" className="border-pink-400 text-pink-400 mb-5">Filter Profile</Button>
+                    <div className="flex justify-center my-5">
+                        <Button onClick={openDrawer} variant="outlined" className="border-pink-400 text-pink-400">Filter Profile</Button>
                     </div>
                     <Drawer open={open} onClose={closeDrawer} className="p-4">
                         <div className="mb-6 flex items-center justify-between">
