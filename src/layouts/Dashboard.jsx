@@ -1,13 +1,20 @@
-import { List, ListItem, ListItemPrefix } from "@material-tailwind/react";
+import { List, ListItem, ListItemPrefix, Spinner } from "@material-tailwind/react";
 
 import { FaDashcube, FaEdit, FaEye, FaHeart, FaHome, FaPersonBooth, FaSign, FaSignOutAlt,  FaUsers, } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
+
 
 
 
 const Dashboard = () => {
 
-    const isAdmin = true;
+    const [isAdmin,  isAdminLoading] = useAdmin();
+
+    if (isAdminLoading) {
+        // Handle loading state...
+        return <div>Loading... <Spinner></Spinner></div>;
+    }
 
     return (
         <div className="lg:max-w-7xl lg:mx-auto flex">
@@ -73,7 +80,7 @@ const Dashboard = () => {
                                         My Contact Requests
                                     </ListItem>
                                 </NavLink>
-                                <NavLink to="/dashboard/favourites" activeClassName="active-link">
+                                <NavLink to="/dashboard/favourites">
                                     <ListItem>
                                         <ListItemPrefix><FaHeart></FaHeart></ListItemPrefix>
                                         Favourites Biodata
