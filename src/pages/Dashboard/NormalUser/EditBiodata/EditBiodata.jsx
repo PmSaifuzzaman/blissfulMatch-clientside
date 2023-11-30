@@ -17,7 +17,7 @@ const EditBiodata = () => {
         console.log(data)
 
 
-        fetch(`http://localhost:5000/users/${email}`, {
+        fetch(`https://blissful-match-server.vercel.app/users/${email}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",

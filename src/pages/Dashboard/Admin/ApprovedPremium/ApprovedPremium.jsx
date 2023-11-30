@@ -12,7 +12,7 @@ const ApprovedPremium = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/users/approvedPremium')
+        fetch('https://blissful-match-server.vercel.app/users/approvedPremium')
         .then(res => res.json())
         .then(data => setPremiumBiodatas(data))
     } , [])

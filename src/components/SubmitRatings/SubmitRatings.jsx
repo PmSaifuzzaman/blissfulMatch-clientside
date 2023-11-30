@@ -10,7 +10,7 @@ const SubmitRatings = () => {
 
         console.log(data)
 
-        fetch("http://localhost:5000/ratings", {
+        fetch("https://blissful-match-server.vercel.app/ratings", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

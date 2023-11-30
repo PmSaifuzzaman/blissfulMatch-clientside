@@ -24,7 +24,7 @@ const Biodatas = () => {
     const [biodatas, setBiodatas] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/biodatas`)
+        fetch(`https://blissful-match-server.vercel.app/biodatas`)
             .then(res => res.json())
             .then(data => setBiodatas(data))
     }, [])

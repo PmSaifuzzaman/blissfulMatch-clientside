@@ -52,7 +52,7 @@ const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: <PrivateRoute><BiodataDetails></BiodataDetails></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`) 
+        loader: ({params}) => fetch(`https://blissful-match-server.vercel.app/details/${params.id}`) 
       }
     ],
   },
@@ -71,12 +71,12 @@ const router = createBrowserRouter([
       {
         path: 'editBiodata/:email',
         element: <EditBiodata></EditBiodata>,
-        loader: ({ params }) => fetch(`http://localhost:5000/users/${params.email}`)
+        loader: ({ params }) => fetch(`https://blissful-match-server.vercel.app/users/${params.email}`)
       },
       {
         path: 'viewBiodata/:email',
         element: <ViewBiodata></ViewBiodata>,
-        loader: ({ params }) => fetch(`http://localhost:5000/users/viewBiodata/${params.email}`)
+        loader: ({ params }) => fetch(`https://blissful-match-server.vercel.app/users/viewBiodata/${params.email}`)
         
       },
 

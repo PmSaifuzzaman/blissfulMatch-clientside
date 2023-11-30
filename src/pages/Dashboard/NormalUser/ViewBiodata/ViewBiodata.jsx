@@ -13,7 +13,7 @@ const ViewBiodata = () => {
     const{ProfileImage, Biodata, Occupation, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight, ContactEmail, MobileNumber} = biodata;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/viewBiodata/${email}`)
+        fetch(`https://blissful-match-server.vercel.app/users/viewBiodata/${email}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data)
