@@ -25,10 +25,11 @@ const Ratings = () => {
     const [ratings, setRatings] = useState([]);
 
     useEffect(() => {
-        fetch('ratings.json')
+        fetch('http://localhost:5000/ratings')
             .then(res => res.json())
             .then(data => setRatings(data))
     }, [])
+
     return (
         <div>
             <div className="text-center mt-10">
