@@ -15,6 +15,7 @@ import EditBiodata from "../pages/Dashboard/NormalUser/EditBiodata/EditBiodata";
 import ContactUs from "../components/ContactUs/ContactUs";
 import AboutUs from "../components/AboutUs/AboutUs";
 import ViewBiodata from "../pages/Dashboard/NormalUser/ViewBiodata/ViewBiodata";
+import ApprovedPremium from "../pages/Dashboard/Admin/ApprovedPremium/ApprovedPremium";
 
 
 
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
       {
         path: "users",
         element: <ManageUsers></ManageUsers>
+      },
+      {
+        path: "approvedPremium",
+        element: <ApprovedPremium></ApprovedPremium>
       }
       
     ]

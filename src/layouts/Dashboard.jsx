@@ -56,7 +56,7 @@ const Dashboard = () => {
                                         Manage user
                                     </ListItem>
                                 </NavLink>
-                                <NavLink>
+                                <NavLink to={'/dashboard/approvedPremium'}>
                                     <ListItem>
                                         <ListItemPrefix><FaSign></FaSign></ListItemPrefix>
                                         Approved Premium
