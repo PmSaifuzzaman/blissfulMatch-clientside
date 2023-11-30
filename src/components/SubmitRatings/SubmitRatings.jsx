@@ -35,9 +35,9 @@ const SubmitRatings = () => {
     return (
         <div>
             <div>
-                <h2 className="text-2xl my-5 text-center font-bold">Rate here</h2>
+                <h2 className="text-4xl my-5 text-center font-bold text-pink-400">Rate here</h2>
             </div>
-            <div className="max-w-md mx-auto">
+            <div className="max-w-md mx-auto p-5 bg-gray-100 rounded-md shadow-2xl">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
                         <Input label="Image link" {...register("image", { required: true })} />
