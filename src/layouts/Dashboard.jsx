@@ -83,7 +83,7 @@ const Dashboard = () => {
                                         Edit biodata
                                     </ListItem>
                                 </NavLink>
-                                <NavLink>
+                                <NavLink to={`/dashboard/viewBiodata/${email}`}>
                                     <ListItem>
                                         <ListItemPrefix><FaEye></FaEye></ListItemPrefix>
                                         View Biodata

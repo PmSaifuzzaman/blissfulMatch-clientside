@@ -14,6 +14,7 @@ import Requests from "../pages/Dashboard/Requests/Requests";
 import EditBiodata from "../pages/Dashboard/NormalUser/EditBiodata/EditBiodata";
 import ContactUs from "../components/ContactUs/ContactUs";
 import AboutUs from "../components/AboutUs/AboutUs";
+import ViewBiodata from "../pages/Dashboard/NormalUser/ViewBiodata/ViewBiodata";
 
 
 
@@ -70,6 +71,12 @@ const router = createBrowserRouter([
         path: 'editBiodata/:email',
         element: <EditBiodata></EditBiodata>,
         loader: ({ params }) => fetch(`http://localhost:5000/users/${params.email}`)
+      },
+      {
+        path: 'viewBiodata/:email',
+        element: <ViewBiodata></ViewBiodata>,
+        loader: ({ params }) => fetch(`http://localhost:5000/users/viewBiodata/${params.email}`)
+        
       },
 
       // Admin related route
