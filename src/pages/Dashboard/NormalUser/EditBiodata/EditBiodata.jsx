@@ -1,19 +1,22 @@
 
-import {  Button, Input, Option, Select } from "@material-tailwind/react";
-import { useForm } from "react-hook-form"
+import { Button, Input, Option, Select } from "@material-tailwind/react";
+import { Controller, useForm } from "react-hook-form"
 import Swal from "sweetalert2";
 import useAuth from "../../../../hooks/useAuth";
 
+
+
 const EditBiodata = () => {
 
-    const{user} = useAuth()
+    const { user } = useAuth()
     const email = user.email
+    const name = user.name
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, control } = useForm()
     const onSubmit = (data) => {
         console.log(data)
-    
-    
+
+
         fetch(`http://localhost:5000/users/${email}`, {
             method: "PUT",
             headers: {
@@ -31,11 +34,11 @@ const EditBiodata = () => {
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
-                    
+
                 }
             });
-    
-    
+
+
     }
 
     return (
@@ -47,7 +50,7 @@ const EditBiodata = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     {/* line 1 */}
                     <div>
-                        <Input label="Name" {...register("Name")} />
+                        <Input label="Name" {...register("Name", { required: true })} defaultValue={name} />
                     </div>
                     <div className="flex gap-5">
                         <div>
@@ -59,18 +62,25 @@ const EditBiodata = () => {
                     </div>
                     {/* line 2 */}
                     <div>
-                        <Select {...register("Biodata")} label="Select Gender" >
-                            <Option>Male</Option>
-                            <Option>Female</Option>
-                        </Select>
+                        <Controller
+                            name="Biodata"
+                            control={control}
+                            defaultValue=""
+                            render={({ field }) => (
+                                <Select {...field} label="Select Gender">
+                                    <Option value="Male">Male</Option>
+                                    <Option value="Female">Female</Option>
+                                </Select>
+                            )}
+                        />
                     </div>
                     {/* line 3 */}
                     <div>
-                        <Input label="Profile Image link" {...register("ProfileImage")} />
+                        <Input label="Profile Image link" {...register("ProfileImage", { required: true })} />
                     </div>
                     {/* line 4 */}
                     <div>
-                        <Input label="Date of Birth" {...register("DateOfBirth")} />
+                        <Input label="Date of Birth" {...register("DateOfBirth", { required: true })} />
                     </div>
                     {/* line 5 */}
                     <div className="flex gap-5">
@@ -93,72 +103,107 @@ const EditBiodata = () => {
                             <Input label="Occupation" {...register("Occupation")} />
                         </div>
                         <div>
-                            <Select {...register("Race")} label="Race">
-                                <Option>Bangladesi</Option>
-                                <Option>Indian</Option>
-                                <Option>Pakistani</Option>
-                                <Option>Australian</Option>
-                                <Option>Canadian</Option>
-                                <Option>Unaited States</Option>
-                            </Select>
+                            <Controller
+                                name="Race"
+                                control={control}
+                                defaultValue=""
+                                render={({ field }) => (
+                                    <Select {...field} label="Race" defaultValue="default">
+                                        <Option value="Bangladesi">Bangladesi</Option>
+                                        <Option value="Indian">Indian</Option>
+                                        <Option value="Pakistani">Pakistani</Option>
+                                        <Option value="Australian">Australian</Option>
+                                        <Option value="Canadian">Canadian</Option>
+                                        <Option value="United States">United States</Option>
+                                    </Select>
+                                )}
+                            />
                         </div>
                         <div>
-                            <Select {...register("Permanent Address")} label="PermanentDivisionName">
-                                <Option>Dhaka</Option>
-                                <Option>Chittagong</Option>
-                                <Option>Khulna</Option>
-                                <Option>Rajshahi</Option>
-                                <Option>Barisal</Option>
-                                <Option>Sylhet</Option>
-                                <Option>Rangpur</Option>
-                                <Option>Mymensing</Option>
-                            </Select>
+                            <Controller
+                                name="PermanentDivisionName"
+                                control={control}
+                                defaultValue=""
+                                render={({ field }) => (
+                                    <Select {...field} label="PermanentDivisionName">
+                                        <Option value="Dhaka">Dhaka</Option>
+                                        <Option value="Chittagong">Chittagong</Option>
+                                        <Option value="Khulna">Khulna</Option>
+                                        <Option value="Rajshahi">Rajshahi</Option>
+                                        <Option value="Barisal">Barisal</Option>
+                                        <Option value="Sylhet">Sylhet</Option>
+                                        <Option value="Rangpur">Rangpur</Option>
+                                        <Option value="Mymensing">Mymensing</Option>
+                                    </Select>
+                                )}
+                            />
                         </div>
                         <div>
-                            <Select {...register("Present Address")} label="PresentDivisionName">
-                                <Option>Dhaka</Option>
-                                <Option>Chittagong</Option>
-                                <Option>Khulna</Option>
-                                <Option>Rajshahi</Option>
-                                <Option>Barisal</Option>
-                                <Option>Sylhet</Option>
-                                <Option>Rangpur</Option>
-                                <Option>Mymensing</Option>
-                            </Select>
+                            <Controller
+                                name="PresentDivisionName"
+                                control={control}
+                                defaultValue=""
+                                render={({ field }) => (
+                                    <Select {...field} label="PresentDivisionName">
+                                        <Option value="Dhaka">Dhaka</Option>
+                                        <Option value="Chittagong">Chittagong</Option>
+                                        <Option value="Khulna">Khulna</Option>
+                                        <Option value="Rajshahi">Rajshahi</Option>
+                                        <Option value="Barisal">Barisal</Option>
+                                        <Option value="Sylhet">Sylhet</Option>
+                                        <Option value="Rangpur">Rangpur</Option>
+                                        <Option value="Mymensing">Mymensing</Option>
+                                    </Select>
+                                )}
+                            />
                         </div>
                     </div>
                     {/* line 8 */}
                     <div className="flex gap-5">
                         <div>
-                            <Input label="Mobile Number" {...register("MobileNumber")} />
+                            <Input label="Mobile Number" {...register("MobileNumber", { required: true })} />
                         </div>
                         <div>
-                            <Input label="Contact Email" {...register("ContactEmail")} defaultValue={email} />
+                            <Input label="Contact Email" {...register("ContactEmail", { required: true })} defaultValue={email} />
                         </div>
                     </div>
                     {/* line 9 */}
                     <div className="flex gap-5">
                         <div>
-                            <Select {...register("Expected Partner Weight")} label="ExpectedPartnerWeight">
-                                <Option>40-45 kg</Option>
-                                <Option>45-50 kg</Option>
-                                <Option>50-55 kg</Option>
-                                <Option>55-60 kg</Option>
-                                <Option>60-65 kg</Option>
-                                <Option>65-75 kg</Option>
-                            </Select>
+                            
+                            <Controller
+                                name="ExpectedPartnerWeight"
+                                control={control}
+                                defaultValue=""
+                                render={({ field }) => (
+                                    <Select {...field} label="ExpectedPartnerWeight">
+                                        <Option value="40-45 kg">40-45 kg</Option>
+                                        <Option value="45-50 kg">45-50 kg</Option>
+                                        <Option value="50-55 kg">50-55 kg</Option>
+                                        <Option value="55-60 kg">55-60 kg</Option>
+                                        <Option value="60-65 kg">60-65 kg</Option>
+                                        <Option value="65-75 kg">65-75 kg</Option>
+                                    </Select>
+                                )}
+                            />
                         </div>
                         <div>
-                            <Select {...register("Expected Partner Height")} label="ExpectedPartnerHeight">
-                                <Option>4 feet</Option>
-                                <Option>5 feet</Option>
-                                <Option>6 feet</Option>
-
-                            </Select>
+                            <Controller
+                                name="ExpectedPartnerHeight"
+                                control={control}
+                                defaultValue=""
+                                render={({ field }) => (
+                                    <Select {...field} label="ExpectedPartnerHeight">
+                                        <Option value="4 feet">4 feet</Option>
+                                        <Option value="5 feet">5 feet</Option>
+                                        <Option value="6 feet">6 feet</Option>
+                                    </Select>
+                                )}
+                            />
                         </div>
                     </div>
 
-                    
+
 
                     <Button className="bg-pink-400 text-white w-full" type="submit">Update</Button>
 

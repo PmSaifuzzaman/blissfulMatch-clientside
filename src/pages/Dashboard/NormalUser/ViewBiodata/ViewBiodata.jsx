@@ -10,7 +10,7 @@ const ViewBiodata = () => {
     const { user } = useAuth()
     const email = user.email
 
-    const{ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight, ContactEmail, MobileNumber} = biodata;
+    const{ProfileImage, Biodata, Occupation, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight, ContactEmail, MobileNumber} = biodata;
 
     useEffect(() => {
         fetch(`http://localhost:5000/users/viewBiodata/${email}`)
@@ -36,11 +36,6 @@ const ViewBiodata = () => {
                             />
                         </CardHeader>
                         <CardBody>
-                            <div>
-                                <Typography color="blue-gray" className="font-medium">
-                                    Id : <span className="font-bold">{BiodataNumber}</span>
-                                </Typography>
-                            </div>
                             <div>
                                 <Typography color="blue-gray" className="font-medium">
                                     Name : <span className="font-bold">{Name}</span>
