@@ -4,37 +4,73 @@ import BiodataCard from "../shared/BiodataCard/BiodataCard";
 
 
 
-import React from "react";
-import {
-    Drawer,
-    Button,
-    Typography,
-    IconButton,
-    Select,
-    Option,
-} from "@material-tailwind/react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { Button, IconButton } from "@material-tailwind/react";
 
 
 const Biodatas = () => {
+
     const itemsPerPage = 9;
 
-    // const [filterGender, setFilterGender] = useState(null);
 
     const [currentPage, setCurrentPage] = useState(1);
 
     const [biodatas, setBiodatas] = useState([]);
 
+    const [filter, setFilter] = useState({
+        Biodata: null,
+        PermanentDivisionName: null,
+        minAge: null,
+        maxAge: null,
+    });
+
+    const fetchBiodatas = () => {
+        const { Biodata, PermanentDivisionName, minAge, maxAge } = filter;
+        const url = `http://localhost:5000/biodatas?biodata=${Biodata || ""}&division=${PermanentDivisionName || ""}&minAge=${minAge || ""}&maxAge=${maxAge || ""}`;
+
+        fetch(url)
+            .then((res) => res.json())
+            .then((data) => setBiodatas(data));
+    };
+
+
     useEffect(() => {
-        fetch(`http://localhost:5000/biodatas`)
-            .then(res => res.json())
-            .then(data => setBiodatas(data))
-    }, [])
+        fetchBiodatas();
+    }, [filter]);
 
-    const [open, setOpen] = React.useState(false);
+    // Filter event handlers
+    const handleBiodataFilterChange = (event) => {
+        setFilter({ ...filter, Biodata: event.target.value });
+    };
 
-    const openDrawer = () => setOpen(true);
-    const closeDrawer = () => setOpen(false);
+    const handleDivisionFilterChange = (event) => {
+        setFilter({ ...filter, PermanentDivisionName: event.target.value });
+    };
+
+    const handleMinAgeFilterChange = (event) => {
+        setFilter({ ...filter, minAge: event.target.value });
+    };
+
+    const handleMaxAgeFilterChange = (event) => {
+        setFilter({ ...filter, maxAge: event.target.value });
+    };
+
+    const handleFilterSubmit = (event) => {
+        event.preventDefault();
+        fetchBiodatas();
+    };
+
+    // useEffect(() => {
+
+    //  const url = `http://localhost:5000/biodatas`;
+    // fetch(url)
+    //     .then(res => res.json())
+    //     .then(data => setBiodatas(data))
+    // }, [])
+
+    
+
+
 
     // For pagination
     const getItemProps = (index) => ({
@@ -68,92 +104,103 @@ const Biodatas = () => {
         setCurrentPage(page);
     };
 
-    // For filter
-    // const handleGenderFilter = (gender) => {
-    //     setFilterGender(gender);
-    //     setCurrentPage(1);
-    // };
-    // const filteredBiodatas = filterGender
-    //     ? biodatas.filter((biodata) => biodata.Biodata === filterGender)
-    //     : biodatas;
-
 
 
     return (
         <div>
             <Navigationbar></Navigationbar>
-            <div>
-                <React.Fragment>
-                    <div className="flex justify-center my-5">
-                        <Button onClick={openDrawer} variant="outlined" className="border-pink-400 text-pink-400">Filter Profile</Button>
-                    </div>
-                    <Drawer open={open} onClose={closeDrawer} className="p-4">
-                        <div className="mb-6 flex items-center justify-between">
-                            <Typography variant="h5" color="blue-gray">
-                                Biodata Filter By
-                            </Typography>
-                            <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={2}
-                                    stroke="currentColor"
-                                    className="h-5 w-5"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            </IconButton>
+
+            <div className="flex">
+                <div className="basis-1/4">
+                    <div className="space-y-2 px-5">
+                        <div className='w-full lg:px-0'>
+                            <h1 className='text-base text-indigo-700'>Filter by Biodata Type</h1>
+                            <select
+                               onChange={handleBiodataFilterChange}
+                                className="mt-1.5 w-full text-lg px-2 py-3 rounded-lg border-black border-2 text-gray-700 sm:text-sm"
+                            >
+                                <option disabled className='text-lg' value="gender">Filter by Biodata Type</option>
+                                <option className='text-lg' value="male">Male</option>
+                                <option className='text-lg' value="female">Female</option>
+                            </select>
                         </div>
-                        <Typography color="gray" className="mb-8 pr-4 font-normal">
-                            <Select label="Filter by age range" >
-                                <Option value="20-25">20-25</Option>
-                                <Option value="25-30">25-30</Option>
-                                <Option value="30-35">30-35</Option>
-                                <Option value="35-40">35-40</Option>
-                                <Option value="40-45">40-45</Option>
-                            </Select>
-                        </Typography>
-                        <Typography color="gray" className="mb-8 pr-4 font-normal">
-                            <Select
-                                label="Filter by type"
-                                // value={filterGender || ""}
-                                // onChange={(e) => handleGenderFilter(e.target.value)}
-                                // placeholder="All"
-                                >
-                                <Option value="Male">Male</Option>
-                                <Option value="Female">Female</Option>
-                            </Select>
-                        </Typography>
-                        <Typography color="gray" className="mb-8 pr-4 font-normal">
-                            <Select label="Filter by Division" >
-                                <Option value="Dhaka">Dhaka</Option>
-                                <Option value="Chittagong">Chittagong</Option>
-                                <Option value="Khulna">Khulna</Option>
-                                <Option value="Rajshahi">Rajshahi</Option>
-                                <Option value="Barisal">Barisal</Option>
-                                <Option value="Sylhet">Sylhet</Option>
-                                <Option value="Rangpur">Rangpur</Option>
-                                <Option value="Mymensing">Mymensing</Option>
-                            </Select>
-                        </Typography>
-                    </Drawer>
-                </React.Fragment>
-            </div>
-            <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                        <div className='w-full text-lg lg:px-0'>
+                            <h1 className='text-base text-indigo-700'>Filter by division</h1>
+                            <select
+                                onChange={handleDivisionFilterChange}
+                                
+                                className="mt-1.5 w-full px-2 py-3 rounded-lg border-black border-2 text-gray-700 sm:text-sm"
+                            >
+                                <option disabled className='text-lg' value="default">Filter by Division</option>
+                                <option className='text-lg' value="dhaka">Dhaka</option>
+                                <option className='text-lg' value="rajshahi">Rajshahi</option>
+                                <option className='text-lg' value="chattagram">Chittagone</option>
+                                <option className='text-lg' value="barisal">Barisal</option>
+                                <option className='text-lg' value="sylet">Sylet</option>
+                                <option className='text-lg' value="rangpur">Rangpur</option>
+                                <option className='text-lg' value="khulna">Khulna</option>
+                                <option className='text-lg' value="mymensingh">Mymensingh</option>
+                            </select>
+                        </div>
+                        <details
+                            className="overflow-hidden rounded border-black border-2"
+                        >
+                            <summary
+                                className="flex cursor-pointer items-center justify-between gap-2 bg-white p-4 text-gray-900 transition"
+                            >
+                                <span className="text-base font-medium"> Age </span>
+                            </summary>
 
-                {
-                    getPageData().map((biodata) => (<BiodataCard key={biodata._id} biodata={biodata}></BiodataCard>))
-                }
+                            <div className="border-t border-gray-200 bg-white">
+                                <div className="border-t border-gray-200 p-4">
+                                    <form className='' >
+                                        <div className="flex justify-between flex-col gap-4">
+                                            <label htmlFor="FilterPriceFrom" className="flex items-center gap-2">
+                                                <span className="text-sm text-gray-600">Min age</span>
+                                                <input
+                                                     onChange={handleMinAgeFilterChange}
+                                                    type="number"
+                                                    name="lowAge"
+                                                    placeholder="From"
 
-                {/* {
-                    biodatas.map(biodata => <BiodataCard key={biodata._id} biodata={biodata}></BiodataCard>)
-                } */}
+                                                    className="w-full text-lg rounded-md border-gray-200 shadow-sm sm:text-sm"
+                                                />
+                                            </label>
+
+                                            <label htmlFor="FilterPriceTo" className="flex items-center gap-2">
+                                                <span className="text-sm text-gray-600">Max age</span>
+                                                <input
+                                                    onChange={handleMaxAgeFilterChange}
+                                                    type="number"
+                                                    name="highAge"
+                                                    placeholder="To"
+                                                    
+                                                    className="w-full rounded-md text-lg border-gray-200 shadow-sm sm:text-sm"
+                                                />
+                                            </label>
+                                            <button type='submit' onClick={handleFilterSubmit} className='bg-indigo-500 rounded-sm p-1'>Filter</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <div className=" basis-3/4 mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                    {
+                        getPageData().map((biodata) => (<BiodataCard key={biodata._id} biodata={biodata}></BiodataCard>))
+                    }
+
+                    {/* {
+                            biodatas.map(biodata => <BiodataCard key={biodata._id} biodata={biodata}></BiodataCard>)
+                        } */
+                    }
+                </div>
             </div>
+
+
             {/*For pagination  */}
             <div className="flex items-center justify-center gap-4 my-5">
                 <Button

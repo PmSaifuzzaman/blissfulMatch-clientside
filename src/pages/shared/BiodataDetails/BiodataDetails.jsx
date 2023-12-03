@@ -7,7 +7,7 @@ import {
     Button,
 } from "@material-tailwind/react";
 
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Navigationbar from "../../../components/Navbar/Navbar";
 import { FaHeart } from "react-icons/fa";
 import { useEffect, useState } from "react";
@@ -71,34 +71,34 @@ const BiodataDetails = () => {
     }
 
 
-    const handleAddRequest = (item) => {
-        if (user && user?.email) {
+    // const handleAddRequest = (item) => {
+    //     if (user && user?.email) {
 
-            console.log(user?.email, item)
+    //         console.log(user?.email, item)
 
-            const requestItem = {
-                userEmail: user?.email,
-                profileId: _id,
-                ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight, ContactEmail, MobileNumber, MembershipType
-            }
-            axiosSecure.post('/requests', requestItem)
-                .then(res => {
-                    console.log(res.data)
-                    if (res.data.insertedId) {
-                        Swal.fire({
-                            text: "Added to Requested contact Successfully",
-                            imageUrl: ProfileImage,
-                            icon: "success",
-                            imageWidth: 400,
-                            imageHeight: 200,
-                            imageAlt: "Custom image"
-                        });
-                        //   To update count
-                        refetch()
-                    }
-                })
-        }
-    }
+    //         const requestItem = {
+    //             userEmail: user?.email,
+    //             profileId: _id,
+    //             ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight, ContactEmail, MobileNumber, MembershipType
+    //         }
+    //         axiosSecure.post('/requests', requestItem)
+    //             .then(res => {
+    //                 console.log(res.data)
+    //                 if (res.data.insertedId) {
+    //                     Swal.fire({
+    //                         text: "Added to Requested contact Successfully",
+    //                         imageUrl: ProfileImage,
+    //                         icon: "success",
+    //                         imageWidth: 400,
+    //                         imageHeight: 200,
+    //                         imageAlt: "Custom image"
+    //                     });
+    //                     //   To update count
+    //                     refetch()
+    //                 }
+    //             })
+    //     }
+    // }
 
     return (
         <div>
@@ -200,14 +200,15 @@ const BiodataDetails = () => {
                                 >
                                     <FaHeart></FaHeart>
                                 </Button>
-                                <Button
-                                    onClick={() => handleAddRequest(singleBiodata)}
-                                    ripple={false}
+                                <Link to={`/checkOut/${_id}`}>
+                                    <Button
+                                        ripple={false}
 
-                                    className="bg-pink-400 text-white shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-                                >
-                                    Request
-                                </Button>
+                                        className="bg-pink-400 text-white shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+                                    >
+                                        Request
+                                    </Button>
+                                </Link>
                             </div>
 
                         </CardFooter>

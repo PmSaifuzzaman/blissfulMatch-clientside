@@ -18,6 +18,8 @@ import ViewBiodata from "../pages/Dashboard/NormalUser/ViewBiodata/ViewBiodata";
 import ApprovedPremium from "../pages/Dashboard/Admin/ApprovedPremium/ApprovedPremium";
 import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard/AdminDashboard";
 
+import Payment from "../pages/Payment/Payment";
+
 
 
 const router = createBrowserRouter([
@@ -51,9 +53,14 @@ const router = createBrowserRouter([
         element: <Register></Register>
       },
       {
+        path: 'checkOut/:id',
+        element: <Payment></Payment>,
+        
+      },
+      {
         path: "/details/:id",
         element: <PrivateRoute><BiodataDetails></BiodataDetails></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`) 
+        loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
       }
     ],
   },
@@ -78,8 +85,9 @@ const router = createBrowserRouter([
         path: 'viewBiodata/:email',
         element: <ViewBiodata></ViewBiodata>,
         loader: ({ params }) => fetch(`http://localhost:5000/users/viewBiodata/${params.email}`)
-        
+
       },
+      
 
       // Admin related route
       {
@@ -94,7 +102,7 @@ const router = createBrowserRouter([
         path: "adminDashboard",
         element: <AdminDashboard></AdminDashboard>
       }
-      
+
     ]
   }
 ]);
