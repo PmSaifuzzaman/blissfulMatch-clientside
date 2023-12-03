@@ -19,6 +19,7 @@ import ApprovedPremium from "../pages/Dashboard/Admin/ApprovedPremium/ApprovedPr
 import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard/AdminDashboard";
 
 import Payment from "../pages/Payment/Payment";
+import ApprovedContactRequests from "../pages/Dashboard/Admin/ApprovedContactRequsts/ApprovedContactRequests";
 
 
 
@@ -98,6 +99,11 @@ const router = createBrowserRouter([
         path: "approvedPremium",
         element: <ApprovedPremium></ApprovedPremium>
       },
+      {
+        path:'approve-contact-request',
+        element:<ApprovedContactRequests></ApprovedContactRequests>
+      },
+
       {
         path: "adminDashboard",
         element: <AdminDashboard></AdminDashboard>

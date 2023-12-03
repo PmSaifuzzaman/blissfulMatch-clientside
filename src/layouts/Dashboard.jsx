@@ -62,7 +62,7 @@ const Dashboard = () => {
                                         Approved Premium
                                     </ListItem>
                                 </NavLink>
-                                <NavLink>
+                                <NavLink to={'/dashboard/approve-contact-request'}>
                                     <ListItem>
                                         <ListItemPrefix><FaHeart></FaHeart></ListItemPrefix>
                                         Approved Contact requests
