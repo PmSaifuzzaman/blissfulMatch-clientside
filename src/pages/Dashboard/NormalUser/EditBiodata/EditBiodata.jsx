@@ -17,7 +17,7 @@ const EditBiodata = () => {
         console.log(data)
 
 
-        fetch(`https://blissful-match-server.vercel.app/users/${email}`, {
+        fetch(`http://localhost:5000/users/${email}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
@@ -65,6 +65,7 @@ const EditBiodata = () => {
                         <Controller
                             name="Biodata"
                             control={control}
+                            rules={{ required: 'Please select a gender' }}
                             defaultValue=""
                             render={({ field }) => (
                                 <Select {...field} label="Select Gender">

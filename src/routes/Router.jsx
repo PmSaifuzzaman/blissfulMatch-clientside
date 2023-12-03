@@ -16,6 +16,7 @@ import ContactUs from "../components/ContactUs/ContactUs";
 import AboutUs from "../components/AboutUs/AboutUs";
 import ViewBiodata from "../pages/Dashboard/NormalUser/ViewBiodata/ViewBiodata";
 import ApprovedPremium from "../pages/Dashboard/Admin/ApprovedPremium/ApprovedPremium";
+import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard/AdminDashboard";
 
 
 
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: <PrivateRoute><BiodataDetails></BiodataDetails></PrivateRoute>,
-        loader: ({params}) => fetch(`https://blissful-match-server.vercel.app/details/${params.id}`) 
+        loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`) 
       }
     ],
   },
@@ -71,12 +72,12 @@ const router = createBrowserRouter([
       {
         path: 'editBiodata/:email',
         element: <EditBiodata></EditBiodata>,
-        loader: ({ params }) => fetch(`https://blissful-match-server.vercel.app/users/${params.email}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/users/${params.email}`)
       },
       {
         path: 'viewBiodata/:email',
         element: <ViewBiodata></ViewBiodata>,
-        loader: ({ params }) => fetch(`https://blissful-match-server.vercel.app/users/viewBiodata/${params.email}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/users/viewBiodata/${params.email}`)
         
       },
 
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
       {
         path: "approvedPremium",
         element: <ApprovedPremium></ApprovedPremium>
+      },
+      {
+        path: "adminDashboard",
+        element: <AdminDashboard></AdminDashboard>
       }
       
     ]

@@ -25,7 +25,7 @@ const Ratings = () => {
     const [ratings, setRatings] = useState([]);
 
     useEffect(() => {
-        fetch('https://blissful-match-server.vercel.app/ratings')
+        fetch('http://localhost:5000/ratings')
             .then(res => res.json())
             .then(data => setRatings(data))
     }, [])

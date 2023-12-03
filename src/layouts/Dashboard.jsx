@@ -44,7 +44,7 @@ const Dashboard = () => {
                     {
                         isAdmin ?
                             <>
-                                <NavLink>
+                                <NavLink to={'/dashboard/adminDashboard'}>
                                     <ListItem>
                                         <ListItemPrefix><FaDashcube></FaDashcube></ListItemPrefix>
                                         Admin Dashboard
@@ -108,8 +108,6 @@ const Dashboard = () => {
                                         Log out
                                     </ListItem>
                                 </Button>
-
-
                             </>
                     }
 

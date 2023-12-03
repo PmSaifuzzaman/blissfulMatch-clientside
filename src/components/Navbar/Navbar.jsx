@@ -111,6 +111,19 @@ const Navigationbar = () => {
                 color="pink"
                 className="p-1 font-normal"
             >
+                <NavLink to="/dashboard"
+                    className={({ isActive, isPending }) =>
+                        isPending ? "pending" : isActive ? "text-pink-400 underline font-medium" : ""
+                    }>
+                    Dashboard
+                </NavLink>
+            </Typography>
+            <Typography
+                as="li"
+                variant="small"
+                color="pink"
+                className="p-1 font-normal"
+            >
                 <NavLink to={"/dashboard/favourites"}>
                     <Badge content={favourites.length}>
                         <Button className="p-3 rounded-full bg-blue-gray-50"><FaCartArrowDown className="text-2xl text-pink-400"></FaCartArrowDown></Button>

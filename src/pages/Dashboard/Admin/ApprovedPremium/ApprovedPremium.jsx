@@ -1,80 +1,100 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { FaStar } from "react-icons/fa";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-
-import { Button } from "@material-tailwind/react";
-
-
-const ApprovedPremium = () => {
-    const[premiumBiodatas, setPremiumBiodatas] = useState([])
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import usePremiumRequest from "../../../../hooks/usePremiumRequest";
 
 
-    useEffect(() => {
-        fetch('https://blissful-match-server.vercel.app/users/approvedPremium')
-        .then(res => res.json())
-        .then(data => setPremiumBiodatas(data))
-    } , [])
 
+const ApprovePremium = () => {
 
-    // Make Premium
-    const handleMakePremium = premiumBiodata => {
-        useAxiosSecure.patch(`/users/premium/${premiumBiodata._id}`)
-            .then(res => {
-                console.log(res.data)
-                if (res.data.modifiedCount > 0) {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: `${premiumBiodata.Name} is an Premium Now!`,
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
-            })
+    
+
+    const { data, refetch, isLoading } = usePremiumRequest();
+    console.log(data)
+    const axiosSecureInstance = useAxiosSecure();
+
+    // console.log(data?.premiumRequestStatus)
+
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+
+    const handleApprovePremium = async (user) => {
+        const res = await axiosSecureInstance.patch(`/approve-premium?id=${user._id}`)
+        if (res.data.acknowledged) {
+            Swal.fire({
+                title: "Good job!",
+                text: "Your approve this premium membership!",
+                icon: "success"
+            });
+            refetch();
+        }
     }
 
 
     return (
         <div>
             <div>
-                <h2 className="text-2xl my-3 text-center">Our Premium Users : <span className="font-bold text-pink-400">{premiumBiodatas?.length}</span></h2>
+                Approved Premium
             </div>
-            <div>
-                <table border="1" className="w-full ">
-                    <thead className=" bg-pink-300 text-left ">
-                        <tr className="">
-                            <th className="py-5 pl-5">#</th>
-                            <th className="py-5">Name</th>
-                            <th className="py-5">Email</th>
-                            <th className="py-5">Biodata Id</th>
-                            <th className="py-5">Make Premium</th>
-                            
+            <div className='pb-10'>
+                <div className="overflow-x-auto lg:px-10">
+                    <table className="min-w-full divide-y-2 divide-gray-200 text-lg">
+                        <thead className="ltr:text-left rtl:text-right">
+                            <tr className=''>
+                                <th className="whitespace-nowrap text-start px-4 py-2 font-bold text-gray-900">
+                                    Biodata ID
+                                </th>
+                                <th className="whitespace-nowrap text-start px-4 py-2 font-bold text-gray-900">
+                                    Name
+                                </th>
+                                <th className="whitespace-nowrap text-start px-4 py-2 font-bold text-gray-900">
+                                    Email
+                                </th>
+                                <th className="whitespace-nowrap text-start px-4 py-2 font-bold text-gray-900">
+                                    Staus
+                                </th>
+                                <th className="whitespace-nowrap text-start px-4 py-2 font-bold text-gray-900">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
 
-                        </tr>
-                    </thead>
-                    <tbody className="text-left">
-                        {
-                            premiumBiodatas.map((premiumBiodata, index) => <tr key={premiumBiodata._id}>
-                                <td className="py-5 pl-5 shadow-lg">{index + 1}.</td>
-                                <td className="py-5 shadow-lg">{premiumBiodata.Name}</td>
-                                <td className="py-5 shadow-lg">{premiumBiodata.ContactEmail}</td>
-                                <td className="py-5 shadow-lg pl-5">{premiumBiodata.BiodataNumber}</td>
-                                <td className="py-5 shadow-lg">
-                                    {
-                                        premiumBiodata.MembershipType === "Premium" ? <FaStar className="text-amber-500 text-2xl ml-5"></FaStar> : <Button onClick={() => handleMakePremium(premiumBiodata)} className="bg-pink-400 ml-3" size="sm">Make premium</Button>
-                                    }
-                                </td>
-                                
-                            </tr>)
-                        }
-
-                    </tbody>
-                </table>
+                        <tbody className="divide-y divide-gray-200">
+                            {
+                                data?.map((user, index) =>
+                                    <tr key={index} className='text-start'>
+                                        <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                            {user?._id}
+                                        </td>
+                                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">{user?.name}</td>
+                                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">{user?.email}</td>
+                                        {
+                                            user?.premiumRequestStatus === "approved" ?
+                                                <td className="whitespace-nowrap px-4 py-2 text-yellow-500">Premium</td> :
+                                                <td className="whitespace-nowrap px-4 py-2 text-red-500">Pending</td>
+                                        }
+                                        {
+                                            user?.premiumRequestStatus === 'approved' ?
+                                                <td className="whitespace-nowrap px-4 py-2">
+                                                    <button disabled className="inline-block rounded text-yellow-500 px-4 py-2 text-lg font-medium">
+                                                        Approved
+                                                    </button>
+                                                </td> :
+                                                <td className="whitespace-nowrap px-4 py-2">
+                                                    <button onClick={() => handleApprovePremium(user)} className="inline-block rounded bg-indigo-600 px-4 py-2 text-lg font-medium text-white hover:bg-indigo-700">
+                                                        Approve
+                                                    </button>
+                                                </td>
+                                        }
+                                    </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default ApprovedPremium;
+export default ApprovePremium

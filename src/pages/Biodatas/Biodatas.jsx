@@ -19,12 +19,14 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 const Biodatas = () => {
     const itemsPerPage = 9;
 
+    // const [filterGender, setFilterGender] = useState(null);
+
     const [currentPage, setCurrentPage] = useState(1);
 
     const [biodatas, setBiodatas] = useState([]);
 
     useEffect(() => {
-        fetch(`https://blissful-match-server.vercel.app/biodatas`)
+        fetch(`http://localhost:5000/biodatas`)
             .then(res => res.json())
             .then(data => setBiodatas(data))
     }, [])
@@ -39,7 +41,7 @@ const Biodatas = () => {
         variant: "text",
         color: "gray",
         onClick: () => goToPage(index),
-        className: currentPage === index ? "bg-pink-400 text-white" : "", // Add this line for background color
+        className: currentPage === index ? "bg-pink-400 text-white" : "",
     });
 
     const maxPageCount = Math.ceil(biodatas.length / itemsPerPage);
@@ -65,6 +67,15 @@ const Biodatas = () => {
     const goToPage = (page) => {
         setCurrentPage(page);
     };
+
+    // For filter
+    // const handleGenderFilter = (gender) => {
+    //     setFilterGender(gender);
+    //     setCurrentPage(1);
+    // };
+    // const filteredBiodatas = filterGender
+    //     ? biodatas.filter((biodata) => biodata.Biodata === filterGender)
+    //     : biodatas;
 
 
 
@@ -108,7 +119,12 @@ const Biodatas = () => {
                             </Select>
                         </Typography>
                         <Typography color="gray" className="mb-8 pr-4 font-normal">
-                            <Select label="Filter by type" >
+                            <Select
+                                label="Filter by type"
+                                // value={filterGender || ""}
+                                // onChange={(e) => handleGenderFilter(e.target.value)}
+                                // placeholder="All"
+                                >
                                 <Option value="Male">Male</Option>
                                 <Option value="Female">Female</Option>
                             </Select>
