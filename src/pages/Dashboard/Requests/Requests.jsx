@@ -1,76 +1,98 @@
-import { Button } from "@material-tailwind/react";
-
-import { FaPaypal, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
-import useRequests from "../../../hooks/useRequests";
+import useAllContactRequestData from "../../../hooks/useAllContactRequestData";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+
 
 
 
 const Requests = () => {
 
-    const [Requests, refetch] = useRequests()
-    const axiosSecure = useAxiosSecure()
+    const { data, refetch, isLoading } = useAllContactRequestData();
+    const axiosSecureInstance = useAxiosSecure();
+    // console.log(data[0].status);
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
 
-    const handleDelete = (id) => {
-        console.log(id)
+    const handleDelete = id => {
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: "You want to be a premium member!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
+            confirmButtonText: "Yes, request for it!"
+        }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/requests/${id}`)
-                .then(res => {
-                    console.log(res)
-                    if (res.data.deletedCount > 0) {
+                axiosSecureInstance.delete(`/delete-requested-contact?id=${id}`)
+                    .then(res => {
+                        if (res.data.acknowledged) {
+                            Swal.fire({
+                                title: "Request Deleted!",
+                                text: "Successfully requested delete!.",
+                                icon: "success"
+                            });
+                        }
                         refetch();
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: `Request has been deleted.`,
-                            icon: "success"
-                        });
-                    }
-                })
+                    })
             }
-          });
-    }
+        });
+    } 
 
     return (
         <div>
-            <h2 className="text-center text-3xl mb-3">My requests : <span className="font-bold text-pink-400">{Requests.length}</span></h2>
+            <h2 className="text-center text-3xl mb-3">My requests : <span className="font-bold text-pink-400">{data.length}</span></h2>
             
-            <div>
-                <table border="1" className="w-full ">
-                    <thead className=" bg-blue-gray-200 text-left ">
-                        <tr className="">
-                            <th className="py-5 pl-5">#</th>
-                            <th className="py-5">Name</th>
-                            <th className="py-5">Biodata Id</th>
-                            <th className="py-5">Mobile</th>
-                            <th className="py-5">Email</th>
-                            <th className="py-5">Action</th>
-                            <th className="py-5 text-center">Pay</th>
+            <div className="overflow-x-auto lg:px-10">
+                <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-base">
+                    <thead className="ltr:text-left rtl:text-right">
+                        <tr className='bg-gray-100'>
+                            <th className="whitespace-nowrap text-start px-4 py-2 font-bold text-gray-900">
+                                Name
+                            </th>
+                            <th className="whitespace-nowrap text-start px-4 py-2 font-bold text-gray-900">
+                                Needed Biodata ID
+                            </th>
+                            <th className="whitespace-nowrap text-start px-4 py-2 font-bold text-gray-900">
+                                Status
+                            </th>
+                            
+                            {/* <th className="px-4 py-2">Action</th> */}
                         </tr>
                     </thead>
-                    <tbody className="text-left">
+
+                    <tbody className="divide-y divide-gray-200">
                         {
-                            Requests.map((request , index) => <tr key={request._id}>
-                                <td className="py-5 pl-5 shadow-lg">{index + 1}.</td>
-                                <td className="py-5 shadow-lg">{request.Name}</td>
-                                <td className="py-5 shadow-lg">{request.BiodataNumber}</td>
-                                <td className="py-5 shadow-lg">{request.MobileNumber}</td>
-                                <td className="py-5 shadow-lg">{request.ContactEmail}</td>
-                                <td className="py-5 shadow-lg"><Button onClick={() => handleDelete(request._id)} className="bg-blue-gray-100 p-3 ml-5 rounded-full text-red-500"><FaTrashAlt /></Button></td>
-                                <td className="py-5 shadow-lg"><Button  className="bg-blue-gray-100 p-3 ml-5 rounded-full text-red-500"><FaPaypal /></Button></td>
-                                
-                            </tr>)
+                            data?.map((user, index) =>
+                                <tr key={index} className='text-start capitalize'>
+                                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                        {user?.name}
+                                    </td>
+                                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                        {user?.neededID}
+                                    </td>
+                                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                                        {user?.status}
+                                    </td>
+                                    {
+                                        user?.status === 'pending' ?
+                                            <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                                                *****
+                                            </td> :
+                                            <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                                                {user?.neederMobile}
+                                            </td>
+                                    }
+                                    
+                                    <td className="whitespace-nowrap px-4 py-2">
+                                        <button onClick={() => handleDelete(user?._id)} className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            )
                         }
-                        
                     </tbody>
                 </table>
             </div>
