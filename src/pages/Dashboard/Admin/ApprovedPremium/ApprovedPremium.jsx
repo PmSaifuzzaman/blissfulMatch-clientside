@@ -34,7 +34,7 @@ const ApprovePremium = () => {
     return (
         <div>
             <div>
-                Approved Premium
+                <h2 className="text-2xl font-bold text-center text-pink-400 my-5">Approve Premium</h2>
             </div>
             <div className='pb-10'>
                 <div className="overflow-x-auto lg:px-10">

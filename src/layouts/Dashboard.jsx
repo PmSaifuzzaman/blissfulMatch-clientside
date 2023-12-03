@@ -1,6 +1,6 @@
 import { Button, List, ListItem, ListItemPrefix, Spinner } from "@material-tailwind/react";
 
-import { FaDashcube, FaEdit, FaEye, FaHeart, FaHome, FaPersonBooth, FaSign, FaSignOutAlt, FaUsers, } from "react-icons/fa";
+import { FaDashcube, FaDraftingCompass, FaEdit, FaEye, FaHeart, FaHome, FaPersonBooth, FaSign, FaSignOutAlt, FaUsers, } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
@@ -99,6 +99,12 @@ const Dashboard = () => {
                                     <ListItem>
                                         <ListItemPrefix><FaHeart></FaHeart></ListItemPrefix>
                                         Favourites Biodata
+                                    </ListItem>
+                                </NavLink>
+                                <NavLink to="/dashboard/rate">
+                                    <ListItem>
+                                        <ListItemPrefix><FaDraftingCompass></FaDraftingCompass></ListItemPrefix>
+                                        Success Story
                                     </ListItem>
                                 </NavLink>
 

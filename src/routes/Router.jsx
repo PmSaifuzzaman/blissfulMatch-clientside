@@ -20,6 +20,7 @@ import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard/AdminDashboa
 
 import Payment from "../pages/Payment/Payment";
 import ApprovedContactRequests from "../pages/Dashboard/Admin/ApprovedContactRequsts/ApprovedContactRequests";
+import SubmitRatings from "../components/SubmitRatings/SubmitRatings";
 
 
 
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
         element: <ViewBiodata></ViewBiodata>,
         loader: ({ params }) => fetch(`http://localhost:5000/users/viewBiodata/${params.email}`)
 
+      },
+      {
+        path: 'rate',
+        element: <SubmitRatings></SubmitRatings>
       },
       
 
