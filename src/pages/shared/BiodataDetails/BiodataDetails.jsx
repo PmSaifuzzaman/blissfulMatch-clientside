@@ -35,7 +35,7 @@ const BiodataDetails = () => {
     const { ProfileImage, Biodata, Occupation, BiodataNumber, Age, PermanentDivisionName, FathersName, MothersName, Name, DateOfBirth, Height, Weight, Race, PresentDivisionName, ExpectedPartnerAge, ExpectedPartnerHeight, ExpectedPartnerWeight, ContactEmail, MobileNumber, MembershipType, _id } = singleBiodata;
 
     useEffect(() => {
-        const url = "http://localhost:5000/biodatas";
+        const url = "https://blissful-match-server.vercel.app/biodatas";
         fetch(url)
             .then(res => res.json())
             .then(data => setBiodatas(data))

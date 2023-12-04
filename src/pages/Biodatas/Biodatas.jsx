@@ -26,7 +26,7 @@ const Biodatas = () => {
 
     const fetchBiodatas = () => {
         const { Biodata, PermanentDivisionName, minAge, maxAge } = filter;
-        const url = `http://localhost:5000/biodatas?biodata=${Biodata || ""}&division=${PermanentDivisionName || ""}&minAge=${minAge || ""}&maxAge=${maxAge || ""}`;
+        const url = `https://blissful-match-server.vercel.app/biodatas?biodata=${Biodata || ""}&division=${PermanentDivisionName || ""}&minAge=${minAge || ""}&maxAge=${maxAge || ""}`;
 
         fetch(url)
             .then((res) => res.json())
@@ -62,13 +62,13 @@ const Biodatas = () => {
 
     // useEffect(() => {
 
-    //  const url = `http://localhost:5000/biodatas`;
+    //  const url = `https://blissful-match-server.vercel.app/biodatas`;
     // fetch(url)
     //     .then(res => res.json())
     //     .then(data => setBiodatas(data))
     // }, [])
 
-    
+
 
 
 
@@ -116,30 +116,30 @@ const Biodatas = () => {
                         <div className='w-full lg:px-0'>
                             <h1 className='text-base text-pink-400'>Filter by Biodata Type</h1>
                             <select
-                               onChange={handleBiodataFilterChange}
+                                onChange={handleBiodataFilterChange}
                                 className="mt-1.5 w-full text-lg px-2 py-3 rounded-lg border-black border-2 text-gray-700 sm:text-sm"
                             >
                                 <option disabled className='text-lg' value="gender">Filter by Biodata Type</option>
-                                <option className='text-lg' value="male">Male</option>
-                                <option className='text-lg' value="female">Female</option>
+                                <option className='text-lg' value="Male">Male</option>
+                                <option className='text-lg' value="Female">Female</option>
                             </select>
                         </div>
                         <div className='w-full text-lg lg:px-0'>
                             <h1 className='text-base text-pink-400'>Filter by division</h1>
                             <select
                                 onChange={handleDivisionFilterChange}
-                                
+
                                 className="mt-1.5 w-full px-2 py-3 rounded-lg border-black border-2 text-gray-700 sm:text-sm"
                             >
                                 <option disabled className='text-lg' value="default">Filter by Division</option>
-                                <option className='text-lg' value="dhaka">Dhaka</option>
-                                <option className='text-lg' value="rajshahi">Rajshahi</option>
-                                <option className='text-lg' value="chattagram">Chittagone</option>
-                                <option className='text-lg' value="barisal">Barisal</option>
-                                <option className='text-lg' value="sylet">Sylet</option>
-                                <option className='text-lg' value="rangpur">Rangpur</option>
-                                <option className='text-lg' value="khulna">Khulna</option>
-                                <option className='text-lg' value="mymensingh">Mymensingh</option>
+                                <option className='text-lg' value="Dhaka">Dhaka</option>
+                                <option className='text-lg' value="Rajshahi">Rajshahi</option>
+                                <option className='text-lg' value="Chattagram">Chittagone</option>
+                                <option className='text-lg' value="Barisal">Barisal</option>
+                                <option className='text-lg' value="Sylet">Sylet</option>
+                                <option className='text-lg' value="Rangpur">Rangpur</option>
+                                <option className='text-lg' value="Khulna">Khulna</option>
+                                <option className='text-lg' value="Mymensingh">Mymensingh</option>
                             </select>
                         </div>
                         <details
@@ -158,7 +158,7 @@ const Biodatas = () => {
                                             <label htmlFor="FilterPriceFrom" className="flex items-center gap-2">
                                                 <span className="text-sm text-gray-600">Min age</span>
                                                 <input
-                                                     onChange={handleMinAgeFilterChange}
+                                                    onChange={handleMinAgeFilterChange}
                                                     type="number"
                                                     name="lowAge"
                                                     placeholder="From"
@@ -174,7 +174,7 @@ const Biodatas = () => {
                                                     type="number"
                                                     name="highAge"
                                                     placeholder="To"
-                                                    
+
                                                     className="w-full rounded-md text-lg border-gray-200 shadow-sm sm:text-sm"
                                                 />
                                             </label>
