@@ -131,7 +131,7 @@ const CheckOut = () => {
     return (
         <div className='pt-10 min-h-screen'>
             <div>
-                <h2>
+                <h2 className="text-2xl text-center font-bold text-pink-400">
                     Check Out here
                 </h2>
             </div>
@@ -139,17 +139,17 @@ const CheckOut = () => {
                 <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
                         <div className="lg:col-span-2 lg:py-12">
-                            <p className="max-w-xl text-lg text-[#000]">
+                            <p className="max-w-xl text-lg ">
                                 If You want to cheekout then you need to pay 500TK. If you paid the amound and if admin approved your request then you see your requested contact iformation in your dashboard. If admin want then he/she can cancel your request if your biodata information is fake. If interested then paid and cheekout this page.
                             </p>
 
                             <div className="mt-8">
-                                <a href="" className="text-2xl font-bold text-[#0C356A]">
+                                <a href="" className="text-2xl font-bold text-pink-300">
                                     Any more information contact
                                 </a>
 
-                                <address className="mt-2 not-italic text-[#0174BE]">
-                                    admin_memory@gmail.com
+                                <address className="mt-2 not-italic text-pink-400">
+                                    pmsaifuzzaman@gmail.com
                                 </address>
                             </div>
                         </div>
@@ -159,7 +159,7 @@ const CheckOut = () => {
                                 <div>
                                     <label className='mb-2'>Requested ID</label>
                                     <input
-                                        className="w-full rounded-lg border-2 border-[#0C356A] p-3 text-sm"
+                                        className="w-full rounded-lg border-2 border-pink-400 p-3 text-sm"
                                         placeholder="Requester biodata ID"
                                         value={id}
                                         type="number"
@@ -172,7 +172,7 @@ const CheckOut = () => {
                                     <div>
                                         <label className='mb-2'>Requester ID</label>
                                         <input
-                                            className="w-full rounded-lg border-2 border-[#0C356A] p-3 text-sm"
+                                            className="w-full rounded-lg border-2 border-pink-400 p-3 text-sm"
                                             placeholder="Your biodata ID"
                                             value={myID}
                                             type="number"
@@ -183,7 +183,7 @@ const CheckOut = () => {
                                     <div>
                                         <label className='mb-2'>Requester Email</label>
                                         <input
-                                            className="w-full rounded-lg border-2 border-[#0C356A] p-3 text-sm"
+                                            className="w-full rounded-lg border-2 border-pink-400 p-3 text-sm"
                                             placeholder="Email"
                                             value={user?.email}
                                             type="email"
@@ -214,7 +214,7 @@ const CheckOut = () => {
                                 <div className="mt-4">
                                     <button disabled={!clientSecret}
                                         type="submit"
-                                        className="inline-block w-full rounded-lg bg-[#0C356A] px-5 py-3 font-medium text-white sm:w-auto"
+                                        className="inline-block w-full rounded-lg bg-pink-400 px-5 py-3 font-medium text-white sm:w-auto"
                                     >
                                         Request
                                     </button>

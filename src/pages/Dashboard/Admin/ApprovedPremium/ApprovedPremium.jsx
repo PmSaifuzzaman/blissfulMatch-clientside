@@ -39,8 +39,11 @@ const ApprovePremium = () => {
             <div className='pb-10'>
                 <div className="overflow-x-auto lg:px-10">
                     <table className="min-w-full divide-y-2 divide-gray-200 text-lg">
-                        <thead className="ltr:text-left rtl:text-right">
+                        <thead className="ltr:text-left rtl:text-right bg-pink-300">
                             <tr className=''>
+                                <th className="whitespace-nowrap text-start px-4 py-2 font-bold text-gray-900">
+                                    #
+                                </th>
                                 <th className="whitespace-nowrap text-start px-4 py-2 font-bold text-gray-900">
                                     Biodata ID
                                 </th>
@@ -64,9 +67,12 @@ const ApprovePremium = () => {
                                 data?.map((user, index) =>
                                     <tr key={index} className='text-start'>
                                         <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                            {index+1}.
+                                        </td>
+                                        <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                                             {user?._id}
                                         </td>
-                                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">{user?.name}</td>
+                                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">{user?.Name}</td>
                                         <td className="whitespace-nowrap px-4 py-2 text-gray-700">{user?.email}</td>
                                         {
                                             user?.premiumRequestStatus === "approved" ?

@@ -114,7 +114,7 @@ const Biodatas = () => {
                 <div className="basis-1/4">
                     <div className="space-y-2 px-5">
                         <div className='w-full lg:px-0'>
-                            <h1 className='text-base text-indigo-700'>Filter by Biodata Type</h1>
+                            <h1 className='text-base text-pink-400'>Filter by Biodata Type</h1>
                             <select
                                onChange={handleBiodataFilterChange}
                                 className="mt-1.5 w-full text-lg px-2 py-3 rounded-lg border-black border-2 text-gray-700 sm:text-sm"
@@ -125,7 +125,7 @@ const Biodatas = () => {
                             </select>
                         </div>
                         <div className='w-full text-lg lg:px-0'>
-                            <h1 className='text-base text-indigo-700'>Filter by division</h1>
+                            <h1 className='text-base text-pink-400'>Filter by division</h1>
                             <select
                                 onChange={handleDivisionFilterChange}
                                 
@@ -178,7 +178,7 @@ const Biodatas = () => {
                                                     className="w-full rounded-md text-lg border-gray-200 shadow-sm sm:text-sm"
                                                 />
                                             </label>
-                                            <button type='submit' onClick={handleFilterSubmit} className='bg-indigo-500 rounded-sm p-1'>Filter</button>
+                                            <button type='submit' onClick={handleFilterSubmit} className='bg-pink-500 rounded-md p-1'>Filter</button>
                                         </div>
                                     </form>
                                 </div>
