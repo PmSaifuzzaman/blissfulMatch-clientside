@@ -134,9 +134,9 @@ const Biodatas = () => {
                                 <option disabled className='text-lg' value="default">Filter by Division</option>
                                 <option className='text-lg' value="Dhaka">Dhaka</option>
                                 <option className='text-lg' value="Rajshahi">Rajshahi</option>
-                                <option className='text-lg' value="Chattagram">Chittagone</option>
-                                <option className='text-lg' value="Barisal">Barisal</option>
-                                <option className='text-lg' value="Sylet">Sylet</option>
+                                <option className='text-lg' value="Chittagong">Chittagong</option>
+                                <option className='text-lg' value="Barishal">Barishal</option>
+                                <option className='text-lg' value="Sylhet">Sylhet</option>
                                 <option className='text-lg' value="Rangpur">Rangpur</option>
                                 <option className='text-lg' value="Khulna">Khulna</option>
                                 <option className='text-lg' value="Mymensingh">Mymensingh</option>
