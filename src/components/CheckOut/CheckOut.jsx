@@ -16,6 +16,7 @@ const CheckOut = () => {
 
 
     const { id } = useParams();
+    console.log(id)
     const { user } = useContext(authContext);
     const { data,  } = useAllBiodatas();
     const myID = data?.find(man => man?.userEmail === user?.email)?.biodataId;
@@ -161,7 +162,9 @@ const CheckOut = () => {
                                     <input
                                         className="w-full rounded-lg border-2 border-pink-400 p-3 text-sm"
                                         placeholder="Requester biodata ID"
-                                        value={id}
+                                        // value={id}
+                                        // defaultValue={id}
+                                        defaultValue={id ? id.toString().charAt(0) : ''}
                                         type="number"
                                         id="name"
                                         disabled
